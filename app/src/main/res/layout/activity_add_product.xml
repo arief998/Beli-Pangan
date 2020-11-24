@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddProductActivity">
+
+    <ScrollView
+        android:id="@+id/svProduk"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <RelativeLayout
+            android:id="@+id/rlProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivProduk"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_image_search"
+                android:onClick="chooseImage"/>
+
+            <TextView
+                android:id="@+id/tvNamaProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nama_produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@+id/ivProduk"/>
+
+            <EditText
+                android:id="@+id/etNamaProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvNamaProduct"
+                android:hint="Isi nama produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/tvHargaProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Harga Produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etNamaProduct"/>
+
+            <EditText
+                android:id="@+id/etHargaProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvHargaProduct"
+                android:hint="Isi harga produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvDeskripsiProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi Produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etHargaProduct"/>
+
+            <EditText
+                android:id="@+id/etDeskripsiProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDeskripsiProduct"
+                android:hint="Isi deskripsi produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="textMultiLine"/>
+
+            <TextView
+                android:id="@+id/tvAlamatProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lokasi Penjual"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etDeskripsiProduct"/>
+
+            <EditText
+                android:id="@+id/etAlamatProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAlamatProduct"
+                android:hint="Isi lokasi"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="textMultiLine"/>
+
+            <TextView
+                android:id="@+id/tvNoTelpon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No.Telpon Penjual"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etAlamatProduct"/>
+
+            <EditText
+                android:id="@+id/etNoTelpon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvNoTelpon"
+                android:hint="Isi nomor telpon"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvKategoriProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kategori Produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etNoTelpon"/>
+
+            <EditText
+                android:id="@+id/etKategoriProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvKategoriProduk"
+                android:hint="Isi kategori produk"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnSimpan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/etKategoriProduk"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="Simpan"
+                android:onClick="tambahProduct"/>
+
+            <Button
+                android:id="@+id/btnBatal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etKategoriProduk"
+                android:layout_toStartOf="@id/btnSimpan"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="Batal"
+                android:onClick="batal"/>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
