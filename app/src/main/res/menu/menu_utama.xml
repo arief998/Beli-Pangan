@@ -7,9 +7,13 @@
         android:icon="@drawable/ic_logout"
         android:iconTint="#AAAAAA"/>
 
-    <item
-        android:id="@+id/menuAdd"
-        android:title="Tambah"
-        android:icon="@drawable/ic_add"
-        app:showAsAction="always"/>
+    <group
+        android:id="@+id/product_menu_group">
+        <item
+            android:id="@+id/menuAdd"
+            android:title="Tambah"
+            android:icon="@drawable/ic_add"
+            app:showAsAction="always"/>
+    </group>
+
 </menu>

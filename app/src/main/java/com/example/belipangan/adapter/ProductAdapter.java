@@ -1,6 +1,7 @@
 package com.example.belipangan.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belipangan.ProductDetailActivity;
 import com.example.belipangan.R;
 import com.example.belipangan.model.Product;
 import com.squareup.picasso.Picasso;
@@ -81,6 +83,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
         public void onClick(View view) {
             int posisi = getLayoutPosition();
             String isi = listProduct.get(posisi).getNama();
+
+            Intent toProductDetail = new Intent(view.getContext(), ProductDetailActivity.class);
+            toProductDetail.putExtra("EXTRA_NAMA", listProduct.get(posisi).getNama());
+            toProductDetail.putExtra("EXTRA_DESKRIPSI", listProduct.get(posisi).getDeskripsi());
+            toProductDetail.putExtra("EXTRA_DESKRIPSI", listProduct.get(posisi).getDeskripsi());
+            toProductDetail.putExtra("EXTRA_DESKRIPSI", listProduct.get(posisi).getDeskripsi());
+
+
             Toast.makeText(view.getContext(), isi, Toast.LENGTH_SHORT).show();
         }
     }

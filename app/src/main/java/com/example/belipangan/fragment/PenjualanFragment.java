@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PenjualanFragment extends Fragment {
     FirebaseAuth mAuth;
+    Menu menu;
 
     public PenjualanFragment() {
         // Required empty public constructor
@@ -36,6 +37,7 @@ public class PenjualanFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_utama, menu);
+        menu.setGroupVisible(R.id.product_menu_group, false);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
