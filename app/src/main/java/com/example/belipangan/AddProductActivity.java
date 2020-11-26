@@ -10,8 +10,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.belipangan.model.Product;
@@ -29,9 +32,10 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
-public class AddProductActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText etNama, etDeksripsi, etHarga, etNoTelpon, etLokasi, etKatgeori;
+    EditText etNama, etDeksripsi, etHarga, etNoTelpon, etLokasi;
+    Spinner spKategori;
     Uri imageUri;
     ImageView ivProduct;
     FirebaseAuth mAuth;
@@ -42,7 +46,8 @@ public class AddProductActivity extends AppCompatActivity {
     DatabaseReference dbReference;
     Product product;
 
-    String nama, deskripsi, harga, noTelpon, lokasi, kategori, uID, imgUri;
+    String nama, deskripsi, noTelpon, lokasi, kategori, uID, imgUri;
+    int harga;
     boolean isValid;
 
     @Override
@@ -57,15 +62,24 @@ public class AddProductActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-
-
         etNama = findViewById(R.id.etNamaProduct);
         etHarga = findViewById(R.id.etHargaProduct);
         etLokasi = findViewById(R.id.etAlamatProduct);
         etDeksripsi = findViewById(R.id.etDeskripsiProduct);
-        etKatgeori = findViewById(R.id.etKategoriProduk);
+        spKategori = findViewById(R.id.spinnerKategori);
         etNoTelpon = findViewById(R.id.etNoTelpon);
         ivProduct = findViewById(R.id.ivProduk);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.array_kategori,
+                android.R.layout.simple_spinner_item
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        if(spKategori != null){
+            spKategori.setAdapter(adapter);
+        }
     }
 
     public void tambahProduct(View view) {
@@ -91,17 +105,16 @@ public class AddProductActivity extends AppCompatActivity {
 
     public boolean validasi(){
         nama = etNama.getText().toString().trim();
-        harga = etHarga.getText().toString().trim();
+        String hargas = etHarga.getText().toString().trim();
         lokasi = etLokasi.getText().toString().trim();
         deskripsi = etDeksripsi.getText().toString().trim();
-        kategori = etKatgeori.getText().toString().trim();
         noTelpon = etNoTelpon.getText().toString().trim();
 
         if(nama.length() == 0){
             etNama.setError("Nama produk harus di isi!");
             return false;
         }
-        else if(harga.length() == 0){
+        else if(hargas.length() == 0){
             etHarga.setError("Harga produk harus di isi!");
             return false;
         }
@@ -113,14 +126,11 @@ public class AddProductActivity extends AppCompatActivity {
             etDeksripsi.setError("Deskripsi produk harus di isi!");
             return false;
         }
-        else if(kategori.length() == 0){
-            etKatgeori.setError("Kategori produk harus di isi!");
-            return false;
-        }
         else if(noTelpon.length() == 0){
             etNoTelpon.setError("Nomor telpon harus di isi!");
             return false;
         }else {
+            harga = Integer.parseInt(hargas);
             return  true;
         }
     }
@@ -181,5 +191,15 @@ public class AddProductActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        kategori = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

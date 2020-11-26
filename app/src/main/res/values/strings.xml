@@ -4,4 +4,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nama_produk">Nama Produk</string>
+    <string-array name="array_kategori">
+        <item>Sayur</item>
+        <item>Buah</item>
+        <item>Makanan Pokok</item>
+    </string-array>
 </resources>

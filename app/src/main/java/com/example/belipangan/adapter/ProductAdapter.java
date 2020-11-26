@@ -43,7 +43,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
         product = listProduct.get(position);
 
         String nama = product.getNama();
-        String harga = product.getHarga();
+        String harga = String.valueOf(product.getHarga());
         String deskripsi = product.getDeskripsi();
         Uri imgUri = Uri.parse(product.getImgUri());
 
@@ -87,8 +87,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
             Intent toProductDetail = new Intent(view.getContext(), ProductDetailActivity.class);
             toProductDetail.putExtra("EXTRA_NAMA", listProduct.get(posisi).getNama());
             toProductDetail.putExtra("EXTRA_DESKRIPSI", listProduct.get(posisi).getDeskripsi());
-            toProductDetail.putExtra("EXTRA_DESKRIPSI", listProduct.get(posisi).getDeskripsi());
-            toProductDetail.putExtra("EXTRA_DESKRIPSI", listProduct.get(posisi).getDeskripsi());
+            toProductDetail.putExtra("EXTRA_IMAGE_URL", listProduct.get(posisi).getImgUri());
+            toProductDetail.putExtra("EXTRA_HARGA", listProduct.get(posisi).getHarga());
+            toProductDetail.putExtra("EXTRA_KATEGORI", listProduct.get(posisi).getKategori());
+
+            view.getContext().startActivity(toProductDetail);
 
 
             Toast.makeText(view.getContext(), isi, Toast.LENGTH_SHORT).show();

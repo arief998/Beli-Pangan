@@ -155,8 +155,8 @@
                 android:textStyle="bold"
                 android:layout_below="@id/etNoTelpon"/>
 
-            <EditText
-                android:id="@+id/etKategoriProduk"
+            <Spinner
+                android:id="@+id/spinnerKategori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvKategoriProduk"
@@ -170,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/etKategoriProduk"
+                android:layout_below="@+id/spinnerKategori"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
@@ -181,7 +181,7 @@
                 android:id="@+id/btnBatal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etKategoriProduk"
+                android:layout_below="@+id/spinnerKategori"
                 android:layout_toStartOf="@id/btnSimpan"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"

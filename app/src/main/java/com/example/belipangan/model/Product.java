@@ -1,12 +1,13 @@
 package com.example.belipangan.model;
 
 public class Product {
-    private String nama, deskripsi, noTelpon, alamat, uID, kategori, harga, imgUri;
+    private String nama, deskripsi, noTelpon, alamat, uID, kategori, imgUri;
+    private int harga;
 
     public Product() {
     }
 
-    public Product(String nama, String deskripsi, String noTelpon, String alamat, String uID, String kategori, String harga, String imgUri) {
+    public Product(String nama, String deskripsi, String noTelpon, String alamat, String uID, String kategori, int harga, String imgUri) {
         this.nama = nama;
         this.deskripsi = deskripsi;
         this.noTelpon = noTelpon;
@@ -49,11 +50,11 @@ public class Product {
         this.alamat = alamat;
     }
 
-    public String getHarga() {
+    public int getHarga() {
         return harga;
     }
 
-    public void setHarga(String harga) { this.harga = harga; }
+    public void setHarga(int harga) { this.harga = harga; }
 
     public String getuID() { return uID; }
 
