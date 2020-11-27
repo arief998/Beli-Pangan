@@ -13,7 +13,7 @@ import com.example.belipangan.fragment.ProductFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivitySeller extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private BottomNavigationView botNavigation;
     private Fragment selectedFragment;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_seller);
 
         mAuth = FirebaseAuth.getInstance();
 

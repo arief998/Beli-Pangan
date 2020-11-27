@@ -6,69 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="Email"
-        android:inputType="textEmailAddress"/>
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etEmail"
-        android:hint="Password"
-        android:inputType="textPassword"/>
-
-    <EditText
-        android:id="@+id/etNama"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPassword"
-        android:hint="Nama"
-        android:inputType="textPersonName"/>
-
-    <EditText
-        android:id="@+id/etNoTelpon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etNama"
-        android:hint="No. Telpon"
-        android:inputType="number"/>
-
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnRegisSeller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/etNoTelpon"
-        android:layout_marginTop="16dp"
+        android:text="Daftar Sebagai Penjual"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="16dp"
-        android:text="Register"
-        android:textStyle="bold"
-        android:onClick="register"/>
+        android:layout_marginTop="250dp"
+        android:onClick="registerSeller"/>
 
+    <Button
+        android:id="@+id/btnRegisBuyer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Daftar Sebagai Pembeli"
+        app:layout_constraintTop_toBottomOf="@id/btnRegisSeller"
+        app:layout_constraintStart_toStartOf="@id/btnRegisSeller"
+        app:layout_constraintEnd_toEndOf="@id/btnRegisSeller"
+        android:layout_marginTop="16dp"
+        android:onClick="registerBuyer"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,6 +35,13 @@ public class PenjualanFragment extends Fragment {
     }
 
     @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        menu.setGroupVisible(R.id.product_menu_group, false);
+        super.onPrepareOptionsMenu(menu);
+
+    }
+
+    @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_utama, menu);
         menu.setGroupVisible(R.id.product_menu_group, false);

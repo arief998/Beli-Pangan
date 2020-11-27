@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -15,13 +16,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText etEmail, etPassword;
     TextView tvRegister;
+    FirebaseDatabase database;
+    FirebaseUser fUser, mUser;
+    DatabaseReference dbReference;
+    FirebaseAuth.AuthStateListener authStateListener;
 
     private String email, password;
 
@@ -30,11 +39,56 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mAuth = FirebaseAuth.getInstance();
+        fUser = mAuth.getCurrentUser();
+
+        autentikasiListener();
+
         etEmail = findViewById(R.id.etEmailLogin);
         etPassword = findViewById(R.id.etPasswordLogin);
         tvRegister = findViewById(R.id.tvRegister);
-        mAuth = FirebaseAuth.getInstance();
 
+    }
+
+    private void autentikasiListener(){
+        authStateListener = new FirebaseAuth.AuthStateListener(){
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                mUser = firebaseAuth.getCurrentUser();
+                if(mUser != null){
+                    database = FirebaseDatabase.getInstance();
+                    dbReference = database.getReference("user").child(mUser.getUid());
+
+                    dbReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String role = dataSnapshot.child("role").getValue().toString();
+                            Log.d("Role auth state listen", role);
+
+                            if(role.equals("buyer")){
+                                Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
+
+                            if(role.equals("seller")){
+                                Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+            }
+        };
+        FirebaseAuth.getInstance().addAuthStateListener(authStateListener);
     }
 
     public void registerUser(View view) {
@@ -65,9 +119,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    fUser = mAuth.getCurrentUser();
+
+                    checkRole(fUser);
+
                 }else{
                     Toast.makeText(LoginActivity.this, "Email atau Password salah", Toast.LENGTH_SHORT).show();
                 }
@@ -75,13 +130,38 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(mAuth.getCurrentUser() != null){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+    private void checkRole(FirebaseUser user){
+        dbReference = database.getReference("user").child(user.getUid());
+
+        dbReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String role = dataSnapshot.child("role").getValue().toString();
+                Log.d("role user", role);
+                Log.d("checkRole", "run");
+
+                if(role.equals("buyer")){
+                    Log.d("checkRole", "role buyer");
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+
+                if(role.equals("seller")){
+                    Log.d("checkRole", "role seller");
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
 }

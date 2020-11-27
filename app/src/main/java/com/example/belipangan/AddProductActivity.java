@@ -92,14 +92,14 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
             String productId = dbReference.push().getKey();
             dbReference.child(productId).setValue(product);
 
-            Intent selesai = new Intent(AddProductActivity.this, MainActivity.class);
+            Intent selesai = new Intent(AddProductActivity.this, MainActivitySeller.class);
             selesai.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK + Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(selesai);
         }
     }
 
     public void batal(View view) {
-        Intent batal = new Intent(AddProductActivity.this, MainActivity.class);
+        Intent batal = new Intent(AddProductActivity.this, MainActivitySeller.class);
         startActivity(batal);
     }
 

@@ -1,14 +1,13 @@
 package com.example.belipangan.model;
 
 public class User {
-    private String nama;
-    private String email;
-    private String noTelpon;
+    private String nama, email, noTelpon, role;
 
-    public User(String nama, String email, String noTelpon) {
+    public User(String nama, String email, String noTelpon, String role) {
         this.nama = nama;
         this.email = email;
         this.noTelpon = noTelpon;
+        this.role = role;
     }
 
     public User() {
@@ -36,5 +35,13 @@ public class User {
 
     public void setNoTelpon(String noTelpon) {
         this.noTelpon = noTelpon;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
