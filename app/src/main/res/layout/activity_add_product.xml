@@ -144,6 +144,75 @@
                 android:inputType="number"/>
 
             <TextView
+                android:id="@+id/tvStok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stok"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etNoTelpon"/>
+
+            <EditText
+                android:id="@+id/etStok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvStok"
+                android:hint="Isi stok barang"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvMinPemesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Minimum Pemesanan"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etStok"/>
+
+            <EditText
+                android:id="@+id/etMinPemesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMinPemesanan"
+                android:hint="Isi minimum pemesanan"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tvBerat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Berat (gram)"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_below="@id/etMinPemesanan"/>
+
+            <EditText
+                android:id="@+id/etBerat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvBerat"
+                android:hint="Isi berat barang"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number"/>
+
+            <TextView
                 android:id="@+id/tvKategoriProduk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,7 +222,7 @@
                 android:layout_marginRight="16dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_below="@id/etNoTelpon"/>
+                android:layout_below="@id/etBerat"/>
 
             <Spinner
                 android:id="@+id/spinnerKategori"

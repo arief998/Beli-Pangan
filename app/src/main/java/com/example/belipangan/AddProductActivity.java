@@ -34,7 +34,7 @@ import java.util.UUID;
 
 public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText etNama, etDeksripsi, etHarga, etNoTelpon, etLokasi;
+    EditText etNama, etDeksripsi, etHarga, etNoTelpon, etLokasi, etBerat, etStok, etMinPemesanan;
     Spinner spKategori;
     Uri imageUri;
     ImageView ivProduct;
@@ -47,7 +47,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     Product product;
 
     String nama, deskripsi, noTelpon, lokasi, kategori, uID, imgUri;
-    int harga;
+    int harga, stok, berat, minPemesanan;
     boolean isValid;
 
     @Override
@@ -69,6 +69,9 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         spKategori = findViewById(R.id.spinnerKategori);
         etNoTelpon = findViewById(R.id.etNoTelpon);
         ivProduct = findViewById(R.id.ivProduk);
+        etStok = findViewById(R.id.etStok);
+        etBerat = findViewById(R.id.etBerat);
+        etMinPemesanan = findViewById(R.id.etMinPemesanan);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
@@ -87,7 +90,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         if(isValid){
             uID = user.getUid();
             dbReference = database.getReference("Product").child(uID);
-            product = new Product(nama, deskripsi, noTelpon, lokasi, uID, kategori, harga, imgUri);
+            product = new Product(nama, deskripsi, noTelpon, lokasi, uID, kategori, harga, imgUri, stok, berat, minPemesanan);
 
             String productId = dbReference.push().getKey();
             dbReference.child(productId).setValue(product);
@@ -109,6 +112,10 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         lokasi = etLokasi.getText().toString().trim();
         deskripsi = etDeksripsi.getText().toString().trim();
         noTelpon = etNoTelpon.getText().toString().trim();
+        String stoks = etStok.getText().toString().trim();
+        String minPemesanans = etMinPemesanan.getText().toString().trim();
+        String berats = etBerat.getText().toString().trim();
+
 
         if(nama.length() == 0){
             etNama.setError("Nama produk harus di isi!");
@@ -129,9 +136,36 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         else if(noTelpon.length() == 0){
             etNoTelpon.setError("Nomor telpon harus di isi!");
             return false;
+        }else if (stoks.length() == 0){
+            etStok.setError("Stok tidak boleh 0");
+            return false;
+        }else if (minPemesanans.length() == 0){
+            etMinPemesanan.setError("Minimum pemesanan tidak boleh 0");
+            return false;
+        }else if (berats.length() == 0){
+            etBerat.setError("Berat tidak boleh 0");
+            return  false;
         }else {
             harga = Integer.parseInt(hargas);
-            return  true;
+            stok = Integer.parseInt(stoks);
+            minPemesanan = Integer.parseInt(minPemesanans);
+            berat = Integer.parseInt(berats);
+            if(stok == 0){
+                etStok.setError("Stok tidak boleh 0");
+                return false;
+            }else if(minPemesanan == 0){
+                etMinPemesanan.setError("Minimum pemesanan tidak boleh 0");
+                return false;
+            }else if(stok < minPemesanan){
+                etStok.setError("Stok tidak boleh kurang dari minimum pemesanan");
+                return false;
+            }else if(berat == 0){
+                etBerat.setError("berat tidak boleh 0");
+                return false;
+            }else{
+                return  true;
+            }
+
         }
     }
 

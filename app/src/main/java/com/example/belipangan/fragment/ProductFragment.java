@@ -35,7 +35,6 @@ public class ProductFragment extends Fragment {
     ProductAdapter adapter;
     RecyclerView rvProduk;
     LinkedList<Product> list;
-    Product p1, p2, p3;
     FirebaseAuth mAuth;
     FirebaseUser user;
     Product product;
@@ -64,11 +63,9 @@ public class ProductFragment extends Fragment {
                 if(dataSnapshot != null){
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         product = snapshot.getValue(Product.class);
+                        product.setKey(snapshot.getKey());
                         Product prdct = product;
                         list.add(prdct);
-
-                        Log.d("Uri produk", prdct.getImgUri());
-
 
                     }
 
@@ -86,6 +83,13 @@ public class ProductFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        menu.setGroupVisible(R.id.edit_menu_product, false);
+        super.onPrepareOptionsMenu(menu);
+
     }
 
     @Override

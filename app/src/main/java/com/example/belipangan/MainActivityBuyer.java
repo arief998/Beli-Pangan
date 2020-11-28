@@ -2,6 +2,7 @@ package com.example.belipangan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,22 +13,54 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.belipangan.fragment.BuyerAccountFragment;
+import com.example.belipangan.fragment.BuyerHomeFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivityBuyer extends AppCompatActivity {
     FirebaseAuth mAuth;
+    private BottomNavigationView botNavigation;
+    private Fragment selectedFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_buyer);
 
+        botNavigation = findViewById(R.id.botNavMenuBuyer);
+        botNavigation.setOnNavigationItemSelectedListener(navListener);
+
         mAuth = FirebaseAuth.getInstance();
+
+        selectedFragment = new BuyerHomeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
+
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.menuHomeBuyer:
+                    selectedFragment = new BuyerHomeFragment();
+                    break;
+                case R.id.menuAkunBuyer:
+                    selectedFragment = new BuyerAccountFragment();
+                    break;
+            }
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
+            return true;
+        }
+    };
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.setGroupVisible(R.id.product_menu_group, false);
+        menu.setGroupVisible(R.id.edit_menu_product, false);
+
         return super.onPrepareOptionsMenu(menu);
     }
 

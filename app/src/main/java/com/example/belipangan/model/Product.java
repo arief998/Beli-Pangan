@@ -1,13 +1,13 @@
 package com.example.belipangan.model;
 
 public class Product {
-    private String nama, deskripsi, noTelpon, alamat, uID, kategori, imgUri;
-    private int harga;
+    private String nama, deskripsi, noTelpon, alamat, uID, kategori, imgUri, key;
+    private int harga, stok, berat, minPemesanan;
 
     public Product() {
     }
 
-    public Product(String nama, String deskripsi, String noTelpon, String alamat, String uID, String kategori, int harga, String imgUri) {
+    public Product(String nama, String deskripsi, String noTelpon, String alamat, String uID, String kategori, int harga, String imgUri, int stok, int berat, int minPemesanan) {
         this.nama = nama;
         this.deskripsi = deskripsi;
         this.noTelpon = noTelpon;
@@ -16,6 +16,17 @@ public class Product {
         this.kategori = kategori;
         this.harga = harga;
         this.imgUri = imgUri;
+        this.stok = stok;
+        this.berat = berat;
+        this.minPemesanan = minPemesanan;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getNama() {
@@ -67,4 +78,28 @@ public class Product {
     public void setImgUri(String imgUri) { this.imgUri = imgUri; }
 
     public String getImgUri() { return imgUri; }
+
+    public int getStok() {
+        return stok;
+    }
+
+    public void setStok(int stok) {
+        this.stok = stok;
+    }
+
+    public int getBerat() {
+        return berat;
+    }
+
+    public void setBerat(int berat) {
+        this.berat = berat;
+    }
+
+    public int getMinPemesanan() {
+        return minPemesanan;
+    }
+
+    public void setMinPemesanan(int minPemesanan) {
+        this.minPemesanan = minPemesanan;
+    }
 }

@@ -23,7 +23,6 @@ import java.util.LinkedList;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProduct>{
     LayoutInflater iAdapter;
     LinkedList<Product> listProduct;
-    int posisi;
 
     public ProductAdapter(Context context, LinkedList<Product> list){
         iAdapter = LayoutInflater.from(context);
@@ -90,6 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
             toProductDetail.putExtra("EXTRA_IMAGE_URL", listProduct.get(posisi).getImgUri());
             toProductDetail.putExtra("EXTRA_HARGA", listProduct.get(posisi).getHarga());
             toProductDetail.putExtra("EXTRA_KATEGORI", listProduct.get(posisi).getKategori());
+            toProductDetail.putExtra("EXTRA_KEY", listProduct.get(posisi).getKey());
 
             view.getContext().startActivity(toProductDetail);
 

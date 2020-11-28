@@ -36,6 +36,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         menu.setGroupVisible(R.id.product_menu_group, false);
+        menu.setGroupVisible(R.id.edit_menu_product, false);
+
         super.onPrepareOptionsMenu(menu);
     }
 
