@@ -62,16 +62,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        etNama = findViewById(R.id.etNamaProduct);
-        etHarga = findViewById(R.id.etHargaProduct);
-        etLokasi = findViewById(R.id.etAlamatProduct);
-        etDeksripsi = findViewById(R.id.etDeskripsiProduct);
-        spKategori = findViewById(R.id.spinnerKategori);
-        etNoTelpon = findViewById(R.id.etNoTelpon);
-        ivProduct = findViewById(R.id.ivProduk);
-        etStok = findViewById(R.id.etStok);
-        etBerat = findViewById(R.id.etBerat);
-        etMinPemesanan = findViewById(R.id.etMinPemesanan);
+        instansiasiView();
+
+        if(spKategori != null){
+            spKategori.setOnItemSelectedListener(this);
+        }
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
@@ -90,6 +85,8 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         if(isValid){
             uID = user.getUid();
             dbReference = database.getReference("Product").child(uID);
+
+
             product = new Product(nama, deskripsi, noTelpon, lokasi, uID, kategori, harga, imgUri, stok, berat, minPemesanan);
 
             String productId = dbReference.push().getKey();
@@ -235,5 +232,18 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    private void instansiasiView(){
+        etNama = findViewById(R.id.etNamaProduct);
+        etHarga = findViewById(R.id.etHargaProduct);
+        etLokasi = findViewById(R.id.etAlamatProduct);
+        etDeksripsi = findViewById(R.id.etDeskripsiProduct);
+        spKategori = findViewById(R.id.spinnerKategori);
+        etNoTelpon = findViewById(R.id.etNoTelpon);
+        ivProduct = findViewById(R.id.ivProduk);
+        etStok = findViewById(R.id.etStok);
+        etBerat = findViewById(R.id.etBerat);
+        etMinPemesanan = findViewById(R.id.etMinPemesanan);
     }
 }

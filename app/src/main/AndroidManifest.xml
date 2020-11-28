@@ -23,6 +23,7 @@
         <activity android:name=".RegisterBuyerActivity" />
         <activity android:name=".RegisterSellerActivity" />
         <activity android:name=".MainActivitySeller" />
+        <activity android:name=".ProductDetailBuyerActivity"/>
     </application>
 
 </manifest>

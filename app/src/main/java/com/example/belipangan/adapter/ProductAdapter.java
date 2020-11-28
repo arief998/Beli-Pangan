@@ -18,7 +18,9 @@ import com.example.belipangan.R;
 import com.example.belipangan.model.Product;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProduct>{
     LayoutInflater iAdapter;
@@ -46,12 +48,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
         String deskripsi = product.getDeskripsi();
         Uri imgUri = Uri.parse(product.getImgUri());
 
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
         holder.tvNama.setText(nama);
-        holder.tvDeskrispi.setText(deskripsi);
-        holder.tvHarga.setText(harga);
+//        holder.tvDeskrispi.setText(deskripsi);
+        holder.tvHarga.setText(formatRupiah.format(Integer.parseInt(harga)));
 
         Picasso.get()
                 .load(imgUri)
+                .placeholder(R.drawable.ic_image)
+                .fit()
                 .into(holder.ivProduct);
 
     }
@@ -62,7 +69,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
     }
 
     public class ViewProduct extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView tvNama, tvHarga, tvDeskrispi;
+        public TextView tvNama, tvHarga;
+//        tvDeskrispi;
         ImageView ivProduct;
         ProductAdapter productAdapter;
 
@@ -70,7 +78,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
             super(itemView);
             tvNama = itemView.findViewById(R.id.tvNamaProduct);
             tvHarga = itemView.findViewById(R.id.tvHargaProduct);
-            tvDeskrispi = itemView.findViewById(R.id.tvDeskripsiProduct);
+//            tvDeskrispi = itemView.findViewById(R.id.tvDeskripsiProduct);
             ivProduct = itemView.findViewById(R.id.ivProduct);
             productAdapter = adapter;
 
@@ -81,7 +89,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
         @Override
         public void onClick(View view) {
             int posisi = getLayoutPosition();
-            String isi = listProduct.get(posisi).getNama();
 
             Intent toProductDetail = new Intent(view.getContext(), ProductDetailActivity.class);
             toProductDetail.putExtra("EXTRA_NAMA", listProduct.get(posisi).getNama());
@@ -90,11 +97,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
             toProductDetail.putExtra("EXTRA_HARGA", listProduct.get(posisi).getHarga());
             toProductDetail.putExtra("EXTRA_KATEGORI", listProduct.get(posisi).getKategori());
             toProductDetail.putExtra("EXTRA_KEY", listProduct.get(posisi).getKey());
+            toProductDetail.putExtra("EXTRA_BERAT", listProduct.get(posisi).getBerat());
+            toProductDetail.putExtra("EXTRA_PEMESANAN", listProduct.get(posisi).getMinPemesanan());
 
             view.getContext().startActivity(toProductDetail);
 
-
-            Toast.makeText(view.getContext(), isi, Toast.LENGTH_SHORT).show();
         }
     }
 

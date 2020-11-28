@@ -31,22 +31,38 @@
                 android:id="@+id/tvNamaProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_below="@id/ivProduct"/>
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@id/ivProduct"
+                android:maxLines="2"
+                android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/tvHargaProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_below="@id/tvNamaProduct"/>
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@id/tvNamaProduct"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="16dp"/>
 
-            <TextView
-                android:id="@+id/tvDeskripsiProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_below="@id/tvHargaProduct"/>
+<!--            <TextView-->
+<!--                android:id="@+id/tvDeskripsiProduct"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_below="@id/tvHargaProduct"-->
+<!--                android:maxLines="2"-->
+<!--                android:ellipsize="end"/>-->
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
