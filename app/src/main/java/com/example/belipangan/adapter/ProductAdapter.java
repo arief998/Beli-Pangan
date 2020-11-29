@@ -90,15 +90,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewProd
         public void onClick(View view) {
             int posisi = getLayoutPosition();
 
+            Product prdct = listProduct.get(posisi);
+
             Intent toProductDetail = new Intent(view.getContext(), ProductDetailActivity.class);
-            toProductDetail.putExtra("EXTRA_NAMA", listProduct.get(posisi).getNama());
-            toProductDetail.putExtra("EXTRA_DESKRIPSI", listProduct.get(posisi).getDeskripsi());
-            toProductDetail.putExtra("EXTRA_IMAGE_URL", listProduct.get(posisi).getImgUri());
-            toProductDetail.putExtra("EXTRA_HARGA", listProduct.get(posisi).getHarga());
-            toProductDetail.putExtra("EXTRA_KATEGORI", listProduct.get(posisi).getKategori());
             toProductDetail.putExtra("EXTRA_KEY", listProduct.get(posisi).getKey());
-            toProductDetail.putExtra("EXTRA_BERAT", listProduct.get(posisi).getBerat());
-            toProductDetail.putExtra("EXTRA_PEMESANAN", listProduct.get(posisi).getMinPemesanan());
+            toProductDetail.putExtra("EXTRA_PRODUCT", prdct);
 
             view.getContext().startActivity(toProductDetail);
 

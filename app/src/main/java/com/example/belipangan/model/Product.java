@@ -1,6 +1,8 @@
 package com.example.belipangan.model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String nama, deskripsi, noTelpon, alamat, uID, kategori, imgUri, key;
     private int harga, stok, berat, minPemesanan;
 

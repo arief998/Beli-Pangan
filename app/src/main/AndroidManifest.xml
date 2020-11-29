@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthenticationApp">
-        <activity android:name=".MainActivityBuyer"></activity>
+        <activity android:name=".EditProductActivity"/>
+        <activity android:name=".MainActivityBuyer" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProductDetailActivity" />
+        <activity android:name=".ProductDetailActivity"/>
         <activity android:name=".AddProductActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -23,7 +24,7 @@
         <activity android:name=".RegisterBuyerActivity" />
         <activity android:name=".RegisterSellerActivity" />
         <activity android:name=".MainActivitySeller" />
-        <activity android:name=".ProductDetailBuyerActivity"/>
+        <activity android:name=".ProductDetailBuyerActivity" />
     </application>
 
 </manifest>

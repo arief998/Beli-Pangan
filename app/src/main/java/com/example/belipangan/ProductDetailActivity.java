@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.belipangan.model.Product;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -29,11 +31,12 @@ public class ProductDetailActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser fUser;
     Intent intent;
-    String nama, deskripsi, kategori, key;
+    String nama, deskripsi, kategori, key, alamat, uid, noTelpon;
     Uri imgUri;
-    int harga, berat, pemesananMinimum;
+    int harga, berat, pemesananMinimum, stok;
     DatabaseReference dbReference;
     StorageReference storageReference;
+    Product product;
 
     ImageView ivProduk;
     TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat;
@@ -48,12 +51,14 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         instansiasiView();
         intent = getIntent();
-        getIntentData();
+        getIntentData(intent);
 
         dbReference = FirebaseDatabase.getInstance().getReference("Product").child(fUser.getUid()).child(key);
         storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imgUri.toString());
 
         setView();
+
+        Log.d("create_detail", "method on create running");
 
     }
 
@@ -67,15 +72,20 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvBerat = findViewById(R.id.tvBeratProduct);
     }
 
-    private void getIntentData(){
-        nama = intent.getStringExtra("EXTRA_NAMA");
-        harga = intent.getIntExtra("EXTRA_HARGA", 0);
-        deskripsi = intent.getStringExtra("EXTRA_DESKRIPSI");
-        kategori = intent.getStringExtra("EXTRA_KATEGORI");
-        imgUri = Uri.parse(intent.getStringExtra("EXTRA_IMAGE_URL"));
+    private void getIntentData(Intent intent){
+        product = (Product)intent.getSerializableExtra("EXTRA_PRODUCT");
+        nama = product.getNama();
+        harga = product.getHarga();
+        deskripsi = product.getDeskripsi();
+        kategori = product.getKategori();
+        imgUri = Uri.parse(product.getImgUri());
         key = intent.getStringExtra("EXTRA_KEY");
-        berat = intent.getIntExtra("EXTRA_BERAT", 0);
-        pemesananMinimum = intent.getIntExtra("EXTRA_PEMESANAN", 0);
+        alamat = product.getAlamat();
+        uid = product.getuID();
+        noTelpon = product.getNoTelpon();
+        berat = product.getBerat();
+        pemesananMinimum = product.getMinPemesanan();
+        stok = product.getStok();
     }
 
     private void setView(){
@@ -122,7 +132,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.menuEdit:
-                Toast.makeText(this, "Edit ditekan", Toast.LENGTH_SHORT).show();
+                Intent toEdit = new Intent(this, EditProductActivity.class);
+                putIntentData(toEdit);
+                startActivity(toEdit);
                 break;
             case R.id.menuDelete:
                 dbReference.removeValue();
@@ -135,5 +147,27 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void putIntentData(Intent intent) {
+        intent.putExtra("EXTRA_PRODUCT", product);
+        intent.putExtra("EXTRA_KEY", key);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intents = getIntent();
+        getIntentData(intents);
+        Product prdct = (Product)intents.getSerializableExtra("EXTRA_PRODUCT");
+        berat = prdct.getBerat();
+        Log.d("resume", "On resume method running");
+        Log.d("berat", String.valueOf(prdct.getBerat()));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("stop_detail", "method on stop running");
     }
 }

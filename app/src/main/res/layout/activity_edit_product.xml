@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddProductActivity">
+    tools:context=".EditProductActivity">
 
     <ScrollView
         android:id="@+id/svProduk"
@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload Foto"
+                android:text="Edit Foto"
                 android:layout_marginTop="16dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="16dp"
@@ -109,52 +109,6 @@
                 android:inputType="textMultiLine"/>
 
             <TextView
-                android:id="@+id/tvAlamatProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lokasi Penjual"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etDeskripsiProduct"/>
-
-            <EditText
-                android:id="@+id/etAlamatProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvAlamatProduct"
-                android:hint="Isi lokasi"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"
-                android:inputType="textMultiLine"/>
-
-            <TextView
-                android:id="@+id/tvNoTelpon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No.Telpon Penjual"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etAlamatProduct"/>
-
-            <EditText
-                android:id="@+id/etNoTelpon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvNoTelpon"
-                android:hint="Isi nomor telpon"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"
-                android:inputType="number"/>
-
-            <TextView
                 android:id="@+id/tvStok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,7 +118,7 @@
                 android:layout_marginRight="16dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_below="@id/etNoTelpon"/>
+                android:layout_below="@id/etDeskripsiProduct"/>
 
             <EditText
                 android:id="@+id/etStok"
@@ -253,20 +207,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
-                android:text="Simpan"
-                android:onClick="tambahProduct"/>
-
-            <Button
-                android:id="@+id/btnBatal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/spinnerKategori"
-                android:layout_toStartOf="@id/btnSimpan"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="Batal"
-                android:onClick="batal"/>
+                android:text="Edit"
+                android:onClick="simpanEdit"/>
 
         </RelativeLayout>
 
