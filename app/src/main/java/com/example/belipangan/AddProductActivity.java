@@ -2,11 +2,13 @@ package com.example.belipangan;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -51,7 +54,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     List<String> listKategori;
     String simpanIsClick;
 
-    String nama, deskripsi, noTelpon, lokasi, kategori, uID, imgUri;
+    String nama, deskripsi, noTelpon, lokasi, kategori, uID, imgUri, cekUri;
     int harga, stok, berat, minPemesanan;
     boolean isValid;
 
@@ -60,6 +63,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         imgUri = "URI_IMAGE";
+        cekUri = "cek";
 
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -152,6 +156,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         }else if (berats.length() == 0){
             etBerat.setError("Berat tidak boleh 0");
             return  false;
+        }else if(cekUri != imgUri){
+            Log.d("cek_uri", cekUri);
+            Log.d("img_uri", imgUri);
+            Toast.makeText(this, "Harus upload foto", Toast.LENGTH_SHORT).show();
+            return false;
         }else {
             harga = Integer.parseInt(hargas);
             stok = Integer.parseInt(stoks);
@@ -183,13 +192,15 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         startActivityForResult(upImage, 1);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==1 && resultCode==RESULT_OK && data != null && data.getData() != null){
             imageUri = data.getData();
-            imgUri = imageUri.toString();
+            imgUri = imageUri.toString()+ LocalDateTime.now().toString();
+            Log.d("img_uri_time", imgUri);
             uploadImage();
         }
     }
@@ -212,6 +223,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
                             @Override
                             public void onSuccess(Uri uri) {
                                 imgUri = uri.toString();
+                                cekUri = imgUri;
 
                                 Picasso.get()
                                         .load(imageUri)

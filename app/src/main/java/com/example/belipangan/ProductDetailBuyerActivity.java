@@ -3,9 +3,11 @@ package com.example.belipangan;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,10 +15,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belipangan.model.Product;
+import com.example.belipangan.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -29,14 +36,14 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser fUser;
     Intent intent;
-    String nama, deskripsi, kategori, key;
+    String nama, deskripsi, kategori, key, alamat, uid, noTelpon, namaToko;
     Uri imgUri;
-    int harga, berat, pemesananMinimum;
-    DatabaseReference dbReference;
+    int harga, berat, pemesananMinimum, stok;
+    DatabaseReference dbReference, dbReference2;
     StorageReference storageReference;
-
     ImageView ivProduk;
-    TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat;
+    TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat, tvToko;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +60,26 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
         dbReference = FirebaseDatabase.getInstance().getReference("Product").child(fUser.getUid()).child(key);
         storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imgUri.toString());
 
-        setView();
+        getUser();
 
+    }
+
+    private void getUser() {
+        dbReference2 = FirebaseDatabase.getInstance().getReference("user").child(uid);
+
+        dbReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                namaToko = dataSnapshot.child("nama").getValue().toString();
+                setView();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void instansiasiView(){
@@ -65,17 +90,23 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
         tvKategori = findViewById(R.id.tvKategori);
         tvMinPesanan = findViewById(R.id.tvPemesananMin);
         tvBerat = findViewById(R.id.tvBeratProduct);
+        tvToko = findViewById(R.id.namaToko);
     }
 
     private void getIntentData(){
-        nama = intent.getStringExtra("EXTRA_NAMA");
-        harga = intent.getIntExtra("EXTRA_HARGA", 0);
-        deskripsi = intent.getStringExtra("EXTRA_DESKRIPSI");
-        kategori = intent.getStringExtra("EXTRA_KATEGORI");
-        imgUri = Uri.parse(intent.getStringExtra("EXTRA_IMAGE_URL"));
+        product = (Product)intent.getSerializableExtra("EXTRA_PRODUCT");
+        nama = product.getNama();
+        harga = product.getHarga();
+        deskripsi = product.getDeskripsi();
+        kategori = product.getKategori();
+        imgUri = Uri.parse(product.getImgUri());
         key = intent.getStringExtra("EXTRA_KEY");
-        berat = intent.getIntExtra("EXTRA_BERAT", 0);
-        pemesananMinimum = intent.getIntExtra("EXTRA_PEMESANAN", 0);
+        alamat = product.getAlamat();
+        uid = product.getuID();
+        noTelpon = product.getNoTelpon();
+        berat = product.getBerat();
+        pemesananMinimum = product.getMinPemesanan();
+        stok = product.getStok();
     }
 
     private void setView(){
@@ -88,7 +119,7 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
         tvKategori.setText(kategori);
         tvBerat.setText(String.valueOf(berat));
         tvMinPesanan.setText(String.valueOf(pemesananMinimum));
-
+        tvToko.setText(namaToko);
 
         Picasso.get()
                 .load(imgUri)
@@ -125,5 +156,12 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void actionBeli(View view) {
+        Intent beli = new Intent(this, ProductOrderActivity.class);
+        beli.putExtra("EXTRA_PRODUCT", product);
+        beli.putExtra("EXTRA_KEY", key);
+        startActivity(beli);
     }
 }

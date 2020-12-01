@@ -2,6 +2,7 @@ package com.example.belipangan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -28,6 +29,9 @@ public class MainActivityBuyer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_buyer);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         botNavigation = findViewById(R.id.botNavMenuBuyer);
         botNavigation.setOnNavigationItemSelectedListener(navListener);

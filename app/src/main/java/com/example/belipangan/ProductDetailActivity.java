@@ -2,6 +2,7 @@ package com.example.belipangan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,8 +18,11 @@ import android.widget.Toast;
 import com.example.belipangan.model.Product;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -31,20 +35,23 @@ public class ProductDetailActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser fUser;
     Intent intent;
-    String nama, deskripsi, kategori, key, alamat, uid, noTelpon;
+    String nama, deskripsi, kategori, key, alamat, uid, noTelpon, namaToko;
     Uri imgUri;
     int harga, berat, pemesananMinimum, stok;
-    DatabaseReference dbReference;
+    DatabaseReference dbReference, dbReference2;
     StorageReference storageReference;
     Product product;
 
     ImageView ivProduk;
-    TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat;
+    TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat, tvToko;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();
         fUser = mAuth.getCurrentUser();
@@ -56,9 +63,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         dbReference = FirebaseDatabase.getInstance().getReference("Product").child(fUser.getUid()).child(key);
         storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imgUri.toString());
 
-        setView();
-
-        Log.d("create_detail", "method on create running");
+        getUser();
 
     }
 
@@ -70,6 +75,25 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvKategori = findViewById(R.id.tvKategori);
         tvMinPesanan = findViewById(R.id.tvPemesananMin);
         tvBerat = findViewById(R.id.tvBeratProduct);
+        tvToko = findViewById(R.id.namaToko);
+    }
+
+    private void getUser() {
+        dbReference2 = FirebaseDatabase.getInstance().getReference("user").child(uid);
+
+        dbReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                namaToko = dataSnapshot.child("nama").getValue().toString();
+                setView();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void getIntentData(Intent intent){
@@ -98,6 +122,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvKategori.setText(kategori);
         tvBerat.setText(String.valueOf(berat));
         tvMinPesanan.setText(String.valueOf(pemesananMinimum));
+        tvToko.setText(namaToko);
 
 
         Picasso.get()

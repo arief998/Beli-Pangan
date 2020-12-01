@@ -6,7 +6,7 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
-
+    flavorDimensions "mode"
     defaultConfig {
         applicationId "com.example.belipangan"
         minSdkVersion 21
@@ -15,6 +15,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    productFlavors{
+        sandbox {
+//            applicationId = "com.example.belipangan.sanbox"
+//            resValue "string", "app_name", "BeliPangan Sanbox"
+            buildConfigField "String", "BASE_URL", "\"https://belipangan.herokuapp.com/index.php/\""
+            buildConfigField "String", "CLIENT_KEY", "\"SB-Mid-client-6OlctxCPV9zYIHis\""
+        }
     }
 
     buildTypes {
@@ -45,6 +54,21 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:28.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:28.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    implementation 'com.midtrans:uikit:1.24.1-SANDBOX'
+    sandboxImplementation 'com.midtrans:uikit:1.24.1-SANDBOX'
+//    implementation 'com.midtrans:uikit:1.24.1'
+
+//    implementation 'com.android.support:appcompat-v7:25.2.0'
+//
+//    compile 'com.android.support:appcompat-v7:25.2.0'
 
 
 

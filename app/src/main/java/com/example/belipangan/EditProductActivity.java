@@ -2,11 +2,13 @@ package com.example.belipangan;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +37,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -60,6 +63,8 @@ public class EditProductActivity extends AppCompatActivity implements AdapterVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
+
+
 
         intent = getIntent();
         getIntentData(intent);
@@ -185,13 +190,14 @@ public class EditProductActivity extends AppCompatActivity implements AdapterVie
         startActivityForResult(upImage, 1);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
             imgUriBaru = data.getData();
-            uriImage = imgUriBaru.toString();
+            uriImage = imgUriBaru.toString() + LocalDateTime.now().toString();
             uploadImage();
         }
     }

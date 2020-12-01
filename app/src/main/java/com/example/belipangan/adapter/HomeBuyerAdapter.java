@@ -74,6 +74,7 @@ public class HomeBuyerAdapter extends RecyclerView.Adapter<HomeBuyerAdapter.Home
         ImageView ivProduct;
         HomeBuyerAdapter homeBuyerAdapter;
 
+
         public HomeBuyer(@NonNull View itemView, HomeBuyerAdapter adapter) {
             super(itemView);
             tvNama = itemView.findViewById(R.id.tvNamaProductBuyer);
@@ -89,15 +90,11 @@ public class HomeBuyerAdapter extends RecyclerView.Adapter<HomeBuyerAdapter.Home
         public void onClick(View view) {
             int posisi = getLayoutPosition();
 
+            Product prdct = list.get(posisi);
+
             Intent toProductDetail = new Intent(view.getContext(), ProductDetailBuyerActivity.class);
-            toProductDetail.putExtra("EXTRA_NAMA", list.get(posisi).getNama());
-            toProductDetail.putExtra("EXTRA_DESKRIPSI", list.get(posisi).getDeskripsi());
-            toProductDetail.putExtra("EXTRA_IMAGE_URL", list.get(posisi).getImgUri());
-            toProductDetail.putExtra("EXTRA_HARGA", list.get(posisi).getHarga());
-            toProductDetail.putExtra("EXTRA_KATEGORI", list.get(posisi).getKategori());
             toProductDetail.putExtra("EXTRA_KEY", list.get(posisi).getKey());
-            toProductDetail.putExtra("EXTRA_BERAT", list.get(posisi).getBerat());
-            toProductDetail.putExtra("EXTRA_PEMESANAN", list.get(posisi).getMinPemesanan());
+            toProductDetail.putExtra("EXTRA_PRODUCT", prdct);
 
             view.getContext().startActivity(toProductDetail);
         }

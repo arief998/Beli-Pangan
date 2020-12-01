@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.belipangan">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
+        tools:replace="android:allowBackup"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthenticationApp">
-        <activity android:name=".EditProductActivity"/>
+        <activity android:name=".ProductOrderActivity"/>
+        <activity android:name=".EditProductActivity" />
         <activity android:name=".MainActivityBuyer" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProductDetailActivity"/>
+        <activity android:name=".ProductDetailActivity" />
         <activity android:name=".AddProductActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

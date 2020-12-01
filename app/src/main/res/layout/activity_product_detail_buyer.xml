@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailActivity"
+    tools:context=".ProductDetailBuyerActivity"
     android:background="@color/grey">
 
     <ScrollView
@@ -263,7 +263,8 @@
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:background="@drawable/custom_btn_beli"
-            android:backgroundTint="@color/orange"/>
+            android:backgroundTint="@color/orange"
+            android:onClick="actionBeli"/>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
