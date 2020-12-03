@@ -32,6 +32,7 @@
                         android:id="@+id/tvProductOverview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat"
                         android:text="Order review"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -54,6 +55,7 @@
                         android:layout_alignTop="@id/ivProdukReview"
                         android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@id/ivProdukReview"
+                        android:fontFamily="@font/montserrat"
                         android:text="Mouse Gaming"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
@@ -66,6 +68,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_toRightOf="@id/ivProdukReview"
+                        android:fontFamily="@font/montserrat"
                         android:text="Berat/pcs 1000 gr" />
 
                     <TextView
@@ -76,21 +79,23 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_toRightOf="@id/ivProdukReview"
+                        android:fontFamily="@font/montserrat"
                         android:text="Rp250.000"
                         android:textColor="@color/green"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/etQty"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_below="@id/tvHargaReview"
                         android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
                         android:layout_toRightOf="@id/ivProdukReview"
+                        android:fontFamily="@font/montserrat"
                         android:hint="Quantity"
-                        android:inputType="number"
-                        android:layout_marginBottom="12dp"/>
+                        android:inputType="number" />
 
 
                 </RelativeLayout>
@@ -114,6 +119,7 @@
                         android:id="@+id/tvCustomerDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat"
                         android:text="Customer Details"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -126,6 +132,7 @@
                         android:layout_below="@id/tvCustomerDetail"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat"
                         android:text="Arief Rahman Fajri" />
 
                     <TextView
@@ -135,6 +142,7 @@
                         android:layout_below="@id/tvNamaCustomer"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat"
                         android:text="rahman@gmail.com" />
 
                     <TextView
@@ -145,6 +153,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/montserrat"
                         android:text="081279616785" />
 
                 </RelativeLayout>
@@ -167,6 +176,7 @@
                         android:id="@+id/tvOrderAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat"
                         android:text="Order delivery address"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -180,8 +190,9 @@
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/montserrat"
                         android:hint="Masukkan alamat anda saat ini"
-                        android:inputType="textMultiLine"/>
+                        android:inputType="textMultiLine" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 

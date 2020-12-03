@@ -33,161 +33,175 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Foto"
-                android:layout_marginTop="16dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:textColor="@color/green"
-                android:onClick="chooseImage" />
+                android:fontFamily="@font/montserrat"
+                android:onClick="chooseImage"
+                android:text="Edit Foto"
+                android:textColor="@color/green" />
 
             <TextView
                 android:id="@+id/tvNamaProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/nama_produk"
+                android:layout_below="@+id/ivProduk"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/nama_produk"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@+id/ivProduk"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etNamaProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvNamaProduct"
-                android:hint="Isi nama produk"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"/>
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi nama produk" />
 
             <TextView
                 android:id="@+id/tvHargaProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Harga Produk"
+                android:layout_below="@id/etNamaProduct"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Harga Produk"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etNamaProduct"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etHargaProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvHargaProduct"
-                android:hint="Isi harga produk"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
-                android:inputType="number"/>
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi harga produk"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/tvDeskripsiProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Deskripsi Produk"
+                android:layout_below="@id/etHargaProduct"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Deskripsi Produk"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etHargaProduct"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etDeskripsiProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDeskripsiProduct"
-                android:hint="Isi deskripsi produk"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
-                android:inputType="textMultiLine"/>
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi deskripsi produk"
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/tvStok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Stok"
+                android:layout_below="@id/etDeskripsiProduct"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Stok"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etDeskripsiProduct"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etStok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvStok"
-                android:hint="Isi stok barang"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
-                android:inputType="number"/>
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi stok barang"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/tvMinPemesanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Minimum Pemesanan"
+                android:layout_below="@id/etStok"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Minimum Pemesanan"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etStok"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etMinPemesanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvMinPemesanan"
-                android:hint="Isi minimum pemesanan"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
-                android:inputType="number"/>
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi minimum pemesanan"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/tvBerat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Berat (gram)"
+                android:layout_below="@id/etMinPemesanan"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Berat (gram)"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etMinPemesanan"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etBerat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvBerat"
-                android:hint="Isi berat barang"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
-                android:inputType="number"/>
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi berat barang"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/tvKategoriProduk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kategori Produk"
+                android:layout_below="@id/etBerat"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Kategori Produk"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_below="@id/etBerat"/>
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinnerKategori"
@@ -202,13 +216,15 @@
                 android:id="@+id/btnSimpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/spinnerKategori"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/montserrat"
+                android:onClick="simpanEdit"
                 android:text="Edit"
-                android:onClick="simpanEdit"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
