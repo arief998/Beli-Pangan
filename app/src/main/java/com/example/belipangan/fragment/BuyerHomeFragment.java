@@ -3,15 +3,21 @@ package com.example.belipangan.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.belipangan.MainActivityBuyer;
 import com.example.belipangan.R;
 import com.example.belipangan.adapter.HomeBuyerAdapter;
 import com.example.belipangan.model.Product;
@@ -36,10 +42,14 @@ public class BuyerHomeFragment extends Fragment {
     Product product;
     HomeBuyerAdapter homeBuyerAdapter;
 
+    SearchView searchView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_buyer_home, container, false);
+
+        searchView = rootView.findViewById(R.id.searchView);
 
         list = new LinkedList<>();
         listKey = new ArrayList<>();
@@ -48,6 +58,19 @@ public class BuyerHomeFragment extends Fragment {
         database2 = FirebaseDatabase.getInstance();
 
         getListKey();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                homeBuyerAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         return rootView;
     }
@@ -111,4 +134,5 @@ public class BuyerHomeFragment extends Fragment {
             });
         }
     }
+
 }
