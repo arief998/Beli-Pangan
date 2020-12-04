@@ -72,6 +72,7 @@ public class MainActivityBuyer extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_utama, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 

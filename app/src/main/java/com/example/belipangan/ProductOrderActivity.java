@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -24,12 +25,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback;
+import com.midtrans.sdk.corekit.core.LocalDataHandler;
 import com.midtrans.sdk.corekit.core.MidtransSDK;
 import com.midtrans.sdk.corekit.core.PaymentMethod;
 import com.midtrans.sdk.corekit.core.TransactionRequest;
+import com.midtrans.sdk.corekit.core.themes.CustomColorTheme;
 import com.midtrans.sdk.corekit.models.BankType;
+import com.midtrans.sdk.corekit.models.BillingAddress;
 import com.midtrans.sdk.corekit.models.CustomerDetails;
 import com.midtrans.sdk.corekit.models.ItemDetails;
+import com.midtrans.sdk.corekit.models.ShippingAddress;
+import com.midtrans.sdk.corekit.models.UserAddress;
+import com.midtrans.sdk.corekit.models.UserDetail;
 import com.midtrans.sdk.corekit.models.snap.CreditCard;
 import com.midtrans.sdk.corekit.models.snap.TransactionResult;
 import com.midtrans.sdk.uikit.SdkUIFlowBuilder;
@@ -37,6 +44,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class ProductOrderActivity extends AppCompatActivity implements TransactionFinishedCallback {
@@ -44,6 +52,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
     FirebaseUser fUser;
     DatabaseReference db;
     User user;
+    List<User> list;
     Product product;
     Intent intent;
 
@@ -65,6 +74,8 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         intent = getIntent();
         getIntentData();
 
+        list = new ArrayList<>();
+
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance().getReference("user").child(fUser.getUid());
@@ -75,6 +86,8 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(User.class);
+                list.add(user);
+
                 cd = detailCustomer(user);
                 initView();
 
@@ -85,6 +98,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
             }
         });
+
     }
 
     private void initView() {
@@ -161,6 +175,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
                 .setMerchantBaseUrl(BuildConfig.BASE_URL)
                 .setClientKey(BuildConfig.CLIENT_KEY)
                 .setTransactionFinishedCallback(this)
+                .enableLog(true)
                 .buildSDK();
     }
 
@@ -168,13 +183,13 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         boolean isValid = validasi();
 
         if(isValid){
-            Log.d("harga", String.valueOf(harga));
-            Log.d("qty", String.valueOf(qty) );
-            Log.d("nama", String.valueOf(nama) );
+
+
             MidtransSDK.getInstance().setTransactionRequest(transactionRequest(
                     "1", harga, qty, nama, cd
             ));
-            MidtransSDK.getInstance().startPaymentUiFlow(this, PaymentMethod.BANK_TRANSFER_BCA);
+
+            MidtransSDK.getInstance().startPaymentUiFlow(this, PaymentMethod.BANK_TRANSFER);
         }
 
     }
@@ -210,9 +225,29 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
     private CustomerDetails detailCustomer(User user){
         CustomerDetails cd = new CustomerDetails();
+        Log.d("Nama User", user.getNama());
         cd.setFirstName(user.getNama());
         cd.setEmail(user.getEmail());
         cd.setPhone(user.getNoTelpon());
+
+        BillingAddress billingAddress = new BillingAddress();
+        billingAddress.setAddress(almtCostumer);
+        billingAddress.setFirstName(cd.getFirstName());
+        billingAddress.setPhone(cd.getPhone());
+        billingAddress.setCity("Yogyakarta");
+        billingAddress.setPostalCode("555235");
+        billingAddress.setCountryCode("IDN");
+        cd.setBillingAddress(billingAddress);
+
+        ShippingAddress shippingAddress = new ShippingAddress();
+        shippingAddress.setFirstName(cd.getFirstName());
+        shippingAddress.setPhone(cd.getPhone());
+        shippingAddress.setAddress(almtCostumer);
+        shippingAddress.setCity("Yogyakarta");
+        shippingAddress.setPostalCode("555235");
+        shippingAddress.setCountryCode("IDN");
+        cd.setShippingAddress(shippingAddress);
+
         return cd;
 
     }
@@ -220,9 +255,8 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
     @SuppressLint("WrongConstant")
     private TransactionRequest transactionRequest(String id, int price, int qty, String name, CustomerDetails cd){
         TransactionRequest request = new TransactionRequest(System.currentTimeMillis()+" ", price*qty);
-        request.setCustomerDetails(cd);
-        ItemDetails item = new ItemDetails(id, price, qty, name);
 
+        ItemDetails item = new ItemDetails(id, price, qty, name);
         ArrayList<ItemDetails> itemDetails = new ArrayList<>();
         itemDetails.add(item);
         request.setItemDetails(itemDetails);
@@ -232,6 +266,61 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         creditCard.setAuthentication(CreditCard.RBA);
         creditCard.setBank(BankType.BCA);
         request.setCreditCard(creditCard);
+
+        BillingAddress billingAddress = new BillingAddress();
+        billingAddress.setAddress(almtCostumer);
+        billingAddress.setFirstName(cd.getFirstName());
+        billingAddress.setPhone(cd.getPhone());
+        billingAddress.setCity("Yogyakarta");
+        billingAddress.setPostalCode("555235");
+        billingAddress.setCountryCode("IDN");
+
+        ArrayList<BillingAddress> billingAddresses = new ArrayList<>();
+        billingAddresses.add(billingAddress);
+        request.setBillingAddressArrayList(billingAddresses);
+
+        ShippingAddress shippingAddress = new ShippingAddress();
+        shippingAddress.setFirstName(cd.getFirstName());
+        shippingAddress.setPhone(cd.getPhone());
+        shippingAddress.setAddress(almtCostumer);
+        shippingAddress.setCity("Yogyakarta");
+        shippingAddress.setPostalCode("555235");
+        shippingAddress.setCountryCode("IDN");
+
+        ArrayList<ShippingAddress> shippingAddresses = new ArrayList<>();
+        shippingAddresses.add(shippingAddress);
+        request.setShippingAddressArrayList(shippingAddresses);
+
+        CustomerDetails customer = cd;
+        customer.setBillingAddress(billingAddress);
+        customer.setShippingAddress(shippingAddress);
+        request.setCustomerDetails(customer);
+
+
+        UserDetail userDetail = LocalDataHandler.readObject("user_details", UserDetail.class);
+        userDetail = new UserDetail();
+        userDetail.setUserFullName(user.getNama());
+        userDetail.setEmail(user.getEmail());
+        userDetail.setPhoneNumber(user.getNoTelpon());
+        // set user ID as identifier of saved card (can be anything as long as unique),
+        // randomly generated by SDK if not supplied
+        userDetail.setUserId(fUser.getUid());
+
+
+        String alamatCustomer = etAddressCus.getText().toString().trim();
+        ArrayList<UserAddress> userAddresses = new ArrayList<>();
+        UserAddress userAddress = new UserAddress();
+        userAddress.setAddress(alamatCustomer);
+        userAddress.setCity("Yogyakarta");
+        userAddress.setAddressType(com.midtrans.sdk.corekit.core.Constants.ADDRESS_TYPE_BOTH);
+        userAddress.setZipcode("555235");
+        userAddress.setCountry("IDN");
+        userAddresses.add(userAddress);
+        userDetail.setUserAddresses(userAddresses);
+        LocalDataHandler.saveObject("user_details", userDetail);
+
+
+        request.setCustomField1("");
 
         return request;
     }

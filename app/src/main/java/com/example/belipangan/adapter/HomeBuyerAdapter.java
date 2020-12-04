@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,17 +24,20 @@ import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeBuyerAdapter extends RecyclerView.Adapter<HomeBuyerAdapter.HomeBuyer> {
+public class HomeBuyerAdapter extends RecyclerView.Adapter<HomeBuyerAdapter.HomeBuyer> implements Filterable{
     private LinkedList<Product> list;
     private LayoutInflater iAdapter;
+    private LinkedList<Product> productListAll;
 
     public HomeBuyerAdapter(Context context, LinkedList<Product> list){
         this.iAdapter = LayoutInflater.from(context);
         this.list = list;
+        this.productListAll = new LinkedList<>(list);
     }
 
     @NonNull
@@ -68,6 +73,39 @@ public class HomeBuyerAdapter extends RecyclerView.Adapter<HomeBuyerAdapter.Home
     public int getItemCount() {
         return list.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    public Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            LinkedList<Product> filteredList = new LinkedList<>();
+
+            if(charSequence.toString().isEmpty()){
+                filteredList.addAll(productListAll);
+            }else{
+                for (Product prdct : productListAll){
+                    if(prdct.getNama().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                        filteredList.add(prdct);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            list.clear();
+            list.addAll((Collection<? extends Product>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class HomeBuyer extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvNama, tvHarga;
