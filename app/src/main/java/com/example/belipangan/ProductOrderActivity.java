@@ -11,9 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.belipangan.model.Order;
 import com.example.belipangan.model.Product;
 import com.example.belipangan.model.Buyer;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,6 +58,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
     Intent intent;
 
     String nama, deskripsi, kategori, key, alamat, uid, noTelpon, almtCostumer, kuantitas;
+    String payment;
     Uri imgUri;
     int harga, berat, pemesananMinimum, stok, qty=0;
     CustomerDetails cd;
@@ -62,6 +66,9 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
     TextView tvHarga, tvNama, tvBerat, tvNamaCus, tvEmailCus, tvTelpCus;
     ImageView ivProduk;
     EditText etQty, etAddressCus;
+
+    RadioGroup radioGroup;
+    RadioButton rbCod, rbTransfer;
 
 
     @Override
@@ -85,7 +92,6 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 buyer = dataSnapshot.getValue(Buyer.class);
                 list.add(buyer);
-
                 cd = detailCustomer(buyer);
                 initView();
 
@@ -112,6 +118,9 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         etAddressCus = (EditText) findViewById(R.id.etAlamatReview);
         tvBerat = findViewById(R.id.tvBeratReview);
         ivProduk = findViewById(R.id.ivProdukReview);
+        radioGroup = (RadioGroup) findViewById(R.id.rgPaymentMethod);
+        rbCod = (RadioButton) findViewById(R.id.rbCod);
+        rbTransfer = (RadioButton) findViewById(R.id.rbTransfer);
 
         tvNama.setText(nama);
         tvHarga.setText(formatRupiah.format(harga)+"/pcs");
@@ -131,11 +140,27 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         kuantitas = etQty.getText().toString().trim();
         almtCostumer = etAddressCus.getText().toString().trim();
 
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        switch (selectedId){
+            case R.id.rbCod:
+                payment = "cod";
+                break;
+            case R.id.rbTransfer:
+                payment = "transfer";
+                break;
+        }
+
+
         if(kuantitas.length() == 0){
             etQty.setError("Kuantitas tidak boleh kosong atau kurang dari " + String.valueOf(pemesananMinimum));
             return false;
-        }else if(almtCostumer.length() == 0){
+        }
+        else if(almtCostumer.length() == 0){
             etAddressCus.setError("Masukkan alamat anda saat ini");
+            return false;
+        }
+        else if(payment.length() == 0){
+            rbCod.setError("Pilih salah satu");
             return false;
         }else {
             qty = Integer.parseInt(kuantitas);
@@ -181,16 +206,43 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         boolean isValid = validasi();
 
         if(isValid){
+            if(payment.equalsIgnoreCase("transfer")){
+                MidtransSDK.getInstance().setTransactionRequest(transactionRequest(
+                        "1", harga, qty, nama, cd
+                ));
 
-            MidtransSDK.getInstance().setTransactionRequest(transactionRequest(
-                    "1", harga, qty, nama, cd
-            ));
+                MidtransSDK.getInstance().startPaymentUiFlow(this, PaymentMethod.BANK_TRANSFER);
+            }
+            else if(payment.equalsIgnoreCase("cod")){
+                codPayment();
+                Log.d("Payment", payment);
+            }
 
-            MidtransSDK.getInstance().startPaymentUiFlow(this, PaymentMethod.BANK_TRANSFER);
         }
 
     }
 
+    private void codPayment() {
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("unapprovalOrders").child(product.getuID());
+
+        Order order = new Order(
+                fUser.getUid(),
+                product.getNama(),
+                buyer.getNama(),
+                alamat,
+                "Pending",
+                pemesananMinimum,
+                product.getHarga()*pemesananMinimum
+        );
+
+        String UUID = db.push().getKey();
+        db.child(UUID).setValue(order);
+
+        Intent intent = new Intent(this, MainActivityBuyer.class);
+        startActivity(intent);
+        finish();
+        Toast.makeText(this, "Pesanan anda sedang di proses", Toast.LENGTH_SHORT).show();
+    }
 
 
     @Override
@@ -323,4 +375,5 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
         return request;
     }
+
 }

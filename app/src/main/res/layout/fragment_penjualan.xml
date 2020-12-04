@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ProductFragment"
-    android:id="@+id/navProduct">
+    android:id="@+id/navProduct"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:gravity="center_vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/btnPendingOrder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Ini adalah Fragment Penjualan"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:text="Order Pending"/>
+    <Button
+        android:id="@+id/btnProgressOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Progress"
+        android:layout_below="@id/btnPendingOrder"/>
+    <Button
+        android:id="@+id/btnFinishedOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Finish"
+        android:layout_below="@id/btnProgressOrder"/>
 
-</FrameLayout>
+</RelativeLayout>

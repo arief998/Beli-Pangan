@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,15 +16,26 @@ import androidx.fragment.app.Fragment;
 
 import com.example.belipangan.LoginActivity;
 import com.example.belipangan.R;
+import com.example.belipangan.SellerFinishOrderActivity;
+import com.example.belipangan.SellerPendingOrderActivity;
+import com.example.belipangan.SellerProgressOrderActivity;
+import com.example.belipangan.adapter.PendingOrderAdapter;
+import com.example.belipangan.model.Order;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class PenjualanFragment extends Fragment {
+import java.util.LinkedList;
+import java.util.List;
+
+public class PenjualanFragment extends Fragment implements View.OnClickListener {
     FirebaseAuth mAuth;
     Menu menu;
-
-    public PenjualanFragment() {
-        // Required empty public constructor
-    }
+    Button btnPending, btnProgress, btnFinish;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +43,20 @@ public class PenjualanFragment extends Fragment {
         setHasOptionsMenu(true);
         mAuth = FirebaseAuth.getInstance();
 
-        return inflater.inflate(R.layout.fragment_penjualan, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_penjualan, container, false);
+
+        btnPending = view.findViewById(R.id.btnPendingOrder);
+        btnProgress = view.findViewById(R.id.btnProgressOrder);
+        btnFinish = view.findViewById(R.id.btnFinishedOrder);
+
+        btnPending.setOnClickListener(this);
+        btnProgress.setOnClickListener(this);
+        btnFinish.setOnClickListener(this);
+
+
+
+        return view;
     }
 
     @Override
@@ -64,5 +89,24 @@ public class PenjualanFragment extends Fragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()){
+            case R.id.btnPendingOrder:
+                intent = new Intent(view.getContext(), SellerPendingOrderActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnProgressOrder:
+                intent = new Intent(view.getContext(), SellerProgressOrderActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnFinishedOrder:
+                intent = new Intent(view.getContext(), SellerFinishOrderActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
