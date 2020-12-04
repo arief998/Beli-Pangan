@@ -1,16 +1,17 @@
 package com.example.belipangan.model;
 
-public class User {
-    private String nama, email, noTelpon, role;
+public class Seller {
+    private String nama, email, noTelpon, role, alamat;
 
-    public User(String nama, String email, String noTelpon, String role) {
+    public Seller(String nama, String email, String noTelpon, String role, String alamat) {
         this.nama = nama;
         this.email = email;
         this.noTelpon = noTelpon;
         this.role = role;
+        this.alamat = alamat;
     }
 
-    public User() {
+    public Seller() {
     }
 
     public String getNama() {
@@ -43,5 +44,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 }

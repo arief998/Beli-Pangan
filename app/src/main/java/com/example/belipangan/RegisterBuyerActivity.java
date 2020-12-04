@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.belipangan.model.User;
+import com.example.belipangan.model.Buyer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,7 +28,7 @@ public class RegisterBuyerActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference dbReference;
-    User pengguna;
+    Buyer pengguna;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class RegisterBuyerActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dbReference = database.getReference("user");
+        dbReference = database.getReference("Buyers");
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -80,12 +80,12 @@ public class RegisterBuyerActivity extends AppCompatActivity {
                             Log.d("sign-up", "createUserWithEmail:success");
 
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                            pengguna = new User(nama, email, noTelp, USER_ROLE);
+                            pengguna = new Buyer(nama, email, noTelp, USER_ROLE);
                             updateUI(firebaseUser);
 
                         }
                         else {
-                            // If sign in fails, display a message to the user.
+                            // If sign in fails, display a message to the buyer.
                             Log.w("sign-up fail", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterBuyerActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();

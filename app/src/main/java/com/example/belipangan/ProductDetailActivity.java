@@ -79,7 +79,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void getUser() {
-        dbReference2 = FirebaseDatabase.getInstance().getReference("user").child(uid);
+        dbReference2 = FirebaseDatabase.getInstance().getReference("Sellers").child(uid);
 
         dbReference2.addValueEventListener(new ValueEventListener() {
             @Override

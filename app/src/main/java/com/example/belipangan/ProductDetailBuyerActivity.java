@@ -3,20 +3,17 @@ package com.example.belipangan;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belipangan.model.Product;
-import com.example.belipangan.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -65,7 +62,7 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
     }
 
     private void getUser() {
-        dbReference2 = FirebaseDatabase.getInstance().getReference("user").child(uid);
+        dbReference2 = FirebaseDatabase.getInstance().getReference("Sellers").child(uid);
 
         dbReference2.addValueEventListener(new ValueEventListener() {
             @Override

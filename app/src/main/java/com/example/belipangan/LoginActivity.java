@@ -58,25 +58,30 @@ public class LoginActivity extends AppCompatActivity {
                 mUser = firebaseAuth.getCurrentUser();
                 if(mUser != null){
                     database = FirebaseDatabase.getInstance();
-                    dbReference = database.getReference("user").child(mUser.getUid());
+                    dbReference = database.getReference("Buyers").child(mUser.getUid());
 
                     dbReference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String role = dataSnapshot.child("role").getValue().toString();
-                            Log.d("Role auth state listen", role);
+                            try {
+                                String role = dataSnapshot.child("role").getValue().toString();
+                                Log.d("Role auth state listen", role);
 
-                            if(role.equals("buyer")){
-                                Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                                if(role.equals("buyer")){
+                                    Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+
+                                if(role.equals("seller")){
+                                    Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                            }catch (Exception e){
+                                sellerAuth();
                             }
 
-                            if(role.equals("seller")){
-                                Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                            }
                         }
 
                         @Override
@@ -89,6 +94,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         FirebaseAuth.getInstance().addAuthStateListener(authStateListener);
+    }
+
+    private void sellerAuth(){
+        dbReference = database.getReference("Sellers").child(mUser.getUid());
+
+        dbReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    String role = dataSnapshot.child("role").getValue().toString();
+
+                    if(role.equals("seller")){
+                        Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                }catch (Exception e){
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void registerUser(View view) {
@@ -131,29 +163,32 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkRole(FirebaseUser user){
-        dbReference = database.getReference("user").child(user.getUid());
+        dbReference = database.getReference("buyer").child(user.getUid());
 
         dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String role = dataSnapshot.child("role").getValue().toString();
-                Log.d("role user", role);
-                Log.d("checkRole", "run");
+                try {
+                    String role = dataSnapshot.child("role").getValue().toString();
 
-                if(role.equals("buyer")){
-                    Log.d("checkRole", "role buyer");
+                    if(role.equals("buyer")){
+                        Log.d("checkRole", "role buyer");
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
+                        Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
 
-                if(role.equals("seller")){
-                    Log.d("checkRole", "role seller");
+                    if(role.equals("seller")){
+                        Log.d("checkRole", "role seller");
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                        Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+
+                }catch (Exception e){
+                    sellerAuth();
                 }
             }
 

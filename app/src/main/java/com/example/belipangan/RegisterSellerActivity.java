@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.belipangan.model.User;
+import com.example.belipangan.model.Seller;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,14 +21,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterSellerActivity extends AppCompatActivity {
-    private EditText etEmail, etPassword, etNama, etNoTelp;
+    private EditText etEmail, etPassword, etNama, etNoTelp, etAlamat;
     private static final String USER_ROLE = "seller";
 
-    String email, password, nama, noTelp, userID;
+    String email, password, nama, noTelp, userID, alamat;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference dbReference;
-    User pengguna;
+    Seller penjual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +37,13 @@ public class RegisterSellerActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dbReference = database.getReference("user");
+        dbReference = database.getReference("Sellers");
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etNama= findViewById(R.id.etNama);
         etNoTelp = findViewById(R.id.etNoTelpon);
+        etAlamat = findViewById(R.id.etAlamat);
     }
 
     public void register(View view) {
@@ -50,6 +51,7 @@ public class RegisterSellerActivity extends AppCompatActivity {
         password = etPassword.getText().toString().trim();
         nama = etNama.getText().toString().trim();
         noTelp = etNoTelp.getText().toString().trim();
+        alamat = etAlamat.getText().toString().trim();
 
         if(email.length() == 0){
             etEmail.setError("Email harus di isi!");
@@ -66,6 +68,9 @@ public class RegisterSellerActivity extends AppCompatActivity {
         else if(noTelp.length() == 0){
             etNoTelp.setError("No. Telpon harus di isi!");
         }
+        else if(alamat.length() == 0){
+            etNoTelp.setError("Alamat harus di isi!");
+        }
         else{
             registerUser(email, password);
         }
@@ -80,12 +85,12 @@ public class RegisterSellerActivity extends AppCompatActivity {
                             Log.d("sign-up", "createUserWithEmail:success");
 
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                            pengguna = new User(nama, email, noTelp, USER_ROLE);
+                            penjual = new Seller(nama, email, noTelp, USER_ROLE, alamat);
                             updateUI(firebaseUser);
 
                         }
                         else {
-                            // If sign in fails, display a message to the user.
+                            // If sign in fails, display a message to the buyer.
                             Log.w("sign-up fail", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterSellerActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -97,7 +102,7 @@ public class RegisterSellerActivity extends AppCompatActivity {
     public void updateUI(FirebaseUser firebaseUser){
 //        String keyId = dbReference.push().getKey();
         String keyId = firebaseUser.getUid();
-        dbReference.child(keyId).setValue(pengguna);
+        dbReference.child(keyId).setValue(penjual);
 
         Intent intent = new Intent(RegisterSellerActivity.this, MainActivitySeller.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -7,7 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.LocaleList;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.belipangan.model.Product;
-import com.example.belipangan.model.User;
+import com.example.belipangan.model.Buyer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +28,6 @@ import com.midtrans.sdk.corekit.core.LocalDataHandler;
 import com.midtrans.sdk.corekit.core.MidtransSDK;
 import com.midtrans.sdk.corekit.core.PaymentMethod;
 import com.midtrans.sdk.corekit.core.TransactionRequest;
-import com.midtrans.sdk.corekit.core.themes.CustomColorTheme;
 import com.midtrans.sdk.corekit.models.BankType;
 import com.midtrans.sdk.corekit.models.BillingAddress;
 import com.midtrans.sdk.corekit.models.CustomerDetails;
@@ -47,12 +45,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ProductOrderActivity extends AppCompatActivity implements TransactionFinishedCallback {
+public class ProductOrderActivity extends AppCompatActivity implements TransactionFinishedCallback{
 
     FirebaseUser fUser;
     DatabaseReference db;
-    User user;
-    List<User> list;
+    Buyer buyer;
+    List<Buyer> list;
     Product product;
     Intent intent;
 
@@ -78,17 +76,17 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-        db = FirebaseDatabase.getInstance().getReference("user").child(fUser.getUid());
+        db = FirebaseDatabase.getInstance().getReference("Buyers").child(fUser.getUid());
 
         initMidtransSdk();
 
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                user = dataSnapshot.getValue(User.class);
-                list.add(user);
+                buyer = dataSnapshot.getValue(Buyer.class);
+                list.add(buyer);
 
-                cd = detailCustomer(user);
+                cd = detailCustomer(buyer);
                 initView();
 
             }
@@ -118,9 +116,9 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         tvNama.setText(nama);
         tvHarga.setText(formatRupiah.format(harga)+"/pcs");
         tvBerat.setText("Berat/pcs "+berat+ " gr");
-        tvNamaCus.setText(this.user.getNama());
-        tvEmailCus.setText(this.user.getEmail());
-        tvTelpCus.setText(this.user.getNoTelpon());
+        tvNamaCus.setText(this.buyer.getNama());
+        tvEmailCus.setText(this.buyer.getEmail());
+        tvTelpCus.setText(this.buyer.getNoTelpon());
 
         Picasso.get()
                 .load(imgUri)
@@ -184,7 +182,6 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
         if(isValid){
 
-
             MidtransSDK.getInstance().setTransactionRequest(transactionRequest(
                     "1", harga, qty, nama, cd
             ));
@@ -193,6 +190,8 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         }
 
     }
+
+
 
     @Override
     public void onTransactionFinished(TransactionResult transactionResult) {
@@ -223,12 +222,12 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
     }
 
-    private CustomerDetails detailCustomer(User user){
+    private CustomerDetails detailCustomer(Buyer buyer){
         CustomerDetails cd = new CustomerDetails();
-        Log.d("Nama User", user.getNama());
-        cd.setFirstName(user.getNama());
-        cd.setEmail(user.getEmail());
-        cd.setPhone(user.getNoTelpon());
+        Log.d("Nama Buyer", buyer.getNama());
+        cd.setFirstName(buyer.getNama());
+        cd.setEmail(buyer.getEmail());
+        cd.setPhone(buyer.getNoTelpon());
 
         BillingAddress billingAddress = new BillingAddress();
         billingAddress.setAddress(almtCostumer);
@@ -299,10 +298,10 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
         UserDetail userDetail = LocalDataHandler.readObject("user_details", UserDetail.class);
         userDetail = new UserDetail();
-        userDetail.setUserFullName(user.getNama());
-        userDetail.setEmail(user.getEmail());
-        userDetail.setPhoneNumber(user.getNoTelpon());
-        // set user ID as identifier of saved card (can be anything as long as unique),
+        userDetail.setUserFullName(buyer.getNama());
+        userDetail.setEmail(buyer.getEmail());
+        userDetail.setPhoneNumber(buyer.getNoTelpon());
+        // set buyer ID as identifier of saved card (can be anything as long as unique),
         // randomly generated by SDK if not supplied
         userDetail.setUserId(fUser.getUid());
 

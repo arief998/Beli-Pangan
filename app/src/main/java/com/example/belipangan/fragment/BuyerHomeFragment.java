@@ -86,8 +86,6 @@ public class BuyerHomeFragment extends Fragment {
                     String key = snapshot.getKey();
                     listKey.add(key);
                 }
-                Log.d("List", listKey.get(0));
-                Log.d("List", listKey.get(1));
 
                 if (listKey.size() > 0){
                     getListProduct();
