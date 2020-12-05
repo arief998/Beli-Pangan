@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -45,6 +46,7 @@ public class SellerPendingOrderActivity extends AppCompatActivity {
                 if(dataSnapshot != null){
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         order = snapshot.getValue(Order.class);
+                        order.setIdOrder(snapshot.getKey());
                         Order ordr = order;
                         list.add(ordr);
                     }
@@ -63,4 +65,5 @@ public class SellerPendingOrderActivity extends AppCompatActivity {
         });
 
     }
+
 }

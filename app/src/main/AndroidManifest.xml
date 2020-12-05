@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthenticationApp"
         tools:replace="android:allowBackup">
-        <activity android:name=".SellerFinishOrderActivity"></activity>
+        <activity android:name=".PendingOrderDetailActivity"/>
+        <activity android:name=".SellerFinishOrderActivity" />
         <activity android:name=".SellerProgressOrderActivity" />
         <activity android:name=".SellerPendingOrderActivity" />
         <activity android:name=".ProductOrderActivity" />

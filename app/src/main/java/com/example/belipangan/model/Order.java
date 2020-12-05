@@ -1,10 +1,12 @@
 package com.example.belipangan.model;
 
-public class Order {
-    String uidBuyer, namaProduct, namaPembeli, alamatTujuan, status;
+import java.io.Serializable;
+
+public class Order implements Serializable {
+    String uidBuyer, namaProduct, namaPembeli, alamatTujuan, status, idOrder;
     int kuantitas, totalHarga;
 
-    public Order(String uidBuyer, String namaProduct, String namaPembeli, String alamatTujuan, String status, int kuantitas, int totalHarga) {
+    public Order(String uidBuyer, String namaProduct, String namaPembeli, String alamatTujuan, String status, int kuantitas, int totalHarga, String idOrder) {
         this.uidBuyer = uidBuyer;
         this.namaProduct = namaProduct;
         this.namaPembeli = namaPembeli;
@@ -12,9 +14,18 @@ public class Order {
         this.status = status;
         this.kuantitas = kuantitas;
         this.totalHarga = totalHarga;
+        this.idOrder = idOrder;
     }
 
     public Order() {
+    }
+
+    public String getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(String idOrder) {
+        this.idOrder = idOrder;
     }
 
     public String getUidBuyer() {

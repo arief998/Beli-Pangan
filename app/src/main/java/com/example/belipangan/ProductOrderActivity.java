@@ -224,18 +224,19 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
     private void codPayment() {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("unapprovalOrders").child(product.getuID());
+        String UUID = db.push().getKey();
 
         Order order = new Order(
                 fUser.getUid(),
                 product.getNama(),
                 buyer.getNama(),
-                alamat,
+                almtCostumer,
                 "Pending",
-                pemesananMinimum,
-                product.getHarga()*pemesananMinimum
+                qty,
+                product.getHarga()*qty,
+                UUID
         );
 
-        String UUID = db.push().getKey();
         db.child(UUID).setValue(order);
 
         Intent intent = new Intent(this, MainActivityBuyer.class);
