@@ -1,6 +1,7 @@
 package com.example.belipangan.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belipangan.PendingOrderDetailActivity;
 import com.example.belipangan.R;
 import com.example.belipangan.model.Order;
 import com.squareup.picasso.Picasso;
@@ -51,9 +54,10 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
         return list.size();
     }
 
-    public class PendingOrder extends RecyclerView.ViewHolder {
+    public class PendingOrder extends RecyclerView.ViewHolder implements View.OnClickListener {
         PendingOrderAdapter adapter;
         TextView tvNama, tvHarga, tvStatus;
+        CardView cv;
 //        ImageView ivProduct;
 
         public PendingOrder(@NonNull View itemView, PendingOrderAdapter adapter) {
@@ -63,7 +67,17 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
             tvNama = itemView.findViewById(R.id.tvNamaProduct);
             tvHarga = itemView.findViewById(R.id.tvTotalHarga);
             tvStatus = itemView.findViewById(R.id.tvStatusProduct);
+            cv = itemView.findViewById(R.id.cvPending);
+
+            cv.setOnClickListener(this);
 //            ivProduct = itemView.findViewById(R.id.ivProductOrder);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), PendingOrderDetailActivity.class);
+            intent.putExtra("EXTRA_ORDER", list.get(getLayoutPosition()));
+            view.getContext().startActivity(intent);
         }
     }
 }
