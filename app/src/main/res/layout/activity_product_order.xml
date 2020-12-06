@@ -94,7 +94,7 @@
                         android:layout_marginBottom="12dp"
                         android:layout_toRightOf="@id/ivProdukReview"
                         android:fontFamily="@font/montserrat"
-                        android:hint="Quantity"
+                        android:hint="Banyak Pesanan"
                         android:inputType="number" />
 
 
@@ -130,7 +130,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvCustomerDetail"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat"
                         android:text="Arief Rahman Fajri" />
@@ -140,7 +139,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvNamaCustomer"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat"
                         android:text="rahman@gmail.com" />
@@ -150,7 +148,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvEmailCustomer"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/montserrat"
@@ -188,7 +185,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvOrderAddress"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/montserrat"
@@ -268,7 +264,8 @@
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:background="@drawable/custom_btn_beli"
-            android:backgroundTint="@color/orange"/>
+            android:backgroundTint="@color/green"
+            android:textStyle="bold"/>
     </androidx.cardview.widget.CardView>
 
 
