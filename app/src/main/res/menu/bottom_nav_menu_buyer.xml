@@ -7,8 +7,13 @@
         android:icon="@drawable/ic_home"/>
 
     <item
+        android:id="@+id/menuOrderBuyer"
+        android:title="Order"
+        android:icon="@drawable/ic_selling"/>
+
+    <item
         android:id="@+id/menuAkunBuyer"
-        android:title="Akun"
+        android:title="Account"
         android:icon="@drawable/ic_account"/>
 
 </menu>

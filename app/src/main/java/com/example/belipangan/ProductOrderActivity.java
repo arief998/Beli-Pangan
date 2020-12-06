@@ -234,7 +234,8 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
                 "Pending",
                 qty,
                 product.getHarga()*qty,
-                UUID
+                UUID,
+                product.getuID()
         );
 
         db.child(UUID).setValue(order);

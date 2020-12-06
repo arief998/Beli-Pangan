@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.belipangan.fragment.BuyerAccountFragment;
 import com.example.belipangan.fragment.BuyerHomeFragment;
+import com.example.belipangan.fragment.BuyerOrderFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -52,6 +53,9 @@ public class MainActivityBuyer extends AppCompatActivity {
                     break;
                 case R.id.menuAkunBuyer:
                     selectedFragment = new BuyerAccountFragment();
+                    break;
+                case R.id.menuOrderBuyer:
+                    selectedFragment = new BuyerOrderFragment();
                     break;
             }
 

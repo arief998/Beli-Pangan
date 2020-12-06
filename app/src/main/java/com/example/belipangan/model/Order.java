@@ -3,10 +3,11 @@ package com.example.belipangan.model;
 import java.io.Serializable;
 
 public class Order implements Serializable {
-    String uidBuyer, namaProduct, namaPembeli, alamatTujuan, status, idOrder;
+    String uidBuyer, namaProduct, namaPembeli, alamatTujuan, status, idOrder, uidSeller;
     int kuantitas, totalHarga;
 
-    public Order(String uidBuyer, String namaProduct, String namaPembeli, String alamatTujuan, String status, int kuantitas, int totalHarga, String idOrder) {
+    public Order(String uidBuyer, String namaProduct, String namaPembeli, String alamatTujuan,
+                 String status, int kuantitas, int totalHarga, String idOrder, String uidSeller) {
         this.uidBuyer = uidBuyer;
         this.namaProduct = namaProduct;
         this.namaPembeli = namaPembeli;
@@ -15,9 +16,18 @@ public class Order implements Serializable {
         this.kuantitas = kuantitas;
         this.totalHarga = totalHarga;
         this.idOrder = idOrder;
+        this.uidSeller = uidSeller;
     }
 
     public Order() {
+    }
+
+    public String getUidSeller() {
+        return uidSeller;
+    }
+
+    public void setUidSeller(String uidSeller) {
+        this.uidSeller = uidSeller;
     }
 
     public String getIdOrder() {
