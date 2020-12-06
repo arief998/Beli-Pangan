@@ -13,33 +13,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthenticationApp"
         tools:replace="android:allowBackup">
-        <activity android:name=".BuyerProgressDetailActivity"/>
-        <activity android:name=".BuyerPendingDetailActivity"/>
-        <activity android:name=".BuyerFinishOrderActivity" />
-        <activity android:name=".BuyerProgressOrderActivity" />
-        <activity android:name=".BuyerPendingOrderActivity" />
-        <activity android:name=".ProgressOrderDetailActivity" />
-        <activity android:name=".PendingOrderDetailActivity" />
-        <activity android:name=".SellerFinishOrderActivity" />
-        <activity android:name=".SellerProgressOrderActivity" />
-        <activity android:name=".SellerPendingOrderActivity" />
-        <activity android:name=".ProductOrderActivity" />
-        <activity android:name=".EditProductActivity" />
-        <activity android:name=".MainActivityBuyer" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProductDetailActivity" />
-        <activity android:name=".AddProductActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.BuyerFinishDetailActivity"/>
+        <activity android:name=".activity.BuyerProgressDetailActivity"/>
+        <activity android:name=".activity.BuyerPendingDetailActivity"/>
+        <activity android:name=".activity.BuyerFinishOrderActivity" />
+        <activity android:name=".activity.BuyerProgressOrderActivity" />
+        <activity android:name=".activity.BuyerPendingOrderActivity" />
+        <activity android:name=".activity.ProgressOrderDetailActivity" />
+        <activity android:name=".activity.PendingOrderDetailActivity" />
+        <activity android:name=".activity.SellerFinishOrderActivity" />
+        <activity android:name=".activity.SellerProgressOrderActivity" />
+        <activity android:name=".activity.SellerPendingOrderActivity" />
+        <activity android:name=".activity.ProductOrderActivity" />
+        <activity android:name=".activity.EditProductActivity" />
+        <activity android:name=".activity.MainActivityBuyer" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ProductDetailActivity" />
+        <activity android:name=".activity.AddProductActivity" />
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterBuyerActivity" />
-        <activity android:name=".RegisterSellerActivity" />
-        <activity android:name=".MainActivitySeller" />
-        <activity android:name=".ProductDetailBuyerActivity" />
+        <activity android:name=".activity.RegisterBuyerActivity" />
+        <activity android:name=".activity.RegisterSellerActivity" />
+        <activity android:name=".activity.MainActivitySeller" />
+        <activity android:name=".activity.ProductDetailBuyerActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

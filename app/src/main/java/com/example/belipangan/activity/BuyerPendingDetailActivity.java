@@ -1,39 +1,34 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.belipangan.R;
 import com.example.belipangan.model.Order;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class PendingOrderDetailActivity extends AppCompatActivity {
-
+public class BuyerPendingDetailActivity extends AppCompatActivity {
     TextView tvNamaProduk, tvNamaCus, tvHarga, tvQty, tvAlamat, tvIdOrder, tvStatus;
     Button btnApprove, btnCancel;
     FirebaseUser fUser;
     Order order;
     Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pending_order_detail);
+        setContentView(R.layout.activity_buyer_pending_detail);
 
         intent = getIntent();
         init();
@@ -72,40 +67,17 @@ public class PendingOrderDetailActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
     }
 
-
-    public void approveAction(View view) {
-
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("approvalOrders")
-                .child(fUser.getUid());
-
-        order.setStatus("Approve");
-
-        db.child(order.getIdOrder()).setValue(order);
-
-        DatabaseReference db2 = FirebaseDatabase.getInstance().getReference("unapprovalOrders")
-                .child(fUser.getUid()).child(order.getIdOrder());
-
-        db2.removeValue();
-
-        Intent intent = new Intent(this, SellerPendingOrderActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-
-
-
-    }
-
     public void cancelAction(View view) {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("unapprovalOrders")
-                .child(fUser.getUid()).child(order.getIdOrder());
+                .child(order.getUidSeller()).child(order.getIdOrder());
 
         db.removeValue();
 
-        Intent intent = new Intent(this, SellerPendingOrderActivity.class);
+        Intent intent = new Intent(this, BuyerPendingOrderActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.belipangan.R;
 import com.example.belipangan.fragment.HomeFragment;
 import com.example.belipangan.fragment.PenjualanFragment;
 import com.example.belipangan.fragment.ProductFragment;

@@ -1,10 +1,12 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.belipangan.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.belipangan.LoginActivity;
+import com.example.belipangan.activity.LoginActivity;
 import com.example.belipangan.R;
 import com.google.firebase.auth.FirebaseAuth;
 

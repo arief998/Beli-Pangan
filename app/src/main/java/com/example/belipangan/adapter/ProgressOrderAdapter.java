@@ -11,10 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.belipangan.BuyerProgressDetailActivity;
-import com.example.belipangan.PendingOrderDetailActivity;
-import com.example.belipangan.ProgressOrderDetailActivity;
+import com.example.belipangan.activity.BuyerProgressDetailActivity;
 import com.example.belipangan.R;
+import com.example.belipangan.activity.ProgressOrderDetailActivity;
 import com.example.belipangan.model.Order;
 
 import java.util.LinkedList;
@@ -74,7 +73,7 @@ public class ProgressOrderAdapter extends RecyclerView.Adapter<ProgressOrderAdap
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), BuyerProgressDetailActivity.class);
+            Intent intent = new Intent(view.getContext(), ProgressOrderDetailActivity.class);
             intent.putExtra("EXTRA_ORDER", list.get(getLayoutPosition()));
             view.getContext().startActivity(intent);
         }

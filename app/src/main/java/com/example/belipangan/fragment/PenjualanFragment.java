@@ -14,23 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.belipangan.LoginActivity;
+import com.example.belipangan.activity.LoginActivity;
 import com.example.belipangan.R;
-import com.example.belipangan.SellerFinishOrderActivity;
-import com.example.belipangan.SellerPendingOrderActivity;
-import com.example.belipangan.SellerProgressOrderActivity;
-import com.example.belipangan.adapter.PendingOrderAdapter;
-import com.example.belipangan.model.Order;
+import com.example.belipangan.activity.SellerFinishOrderActivity;
+import com.example.belipangan.activity.SellerPendingOrderActivity;
+import com.example.belipangan.activity.SellerProgressOrderActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class PenjualanFragment extends Fragment implements View.OnClickListener {
     FirebaseAuth mAuth;

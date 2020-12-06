@@ -15,14 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.belipangan.BuyerFinishOrderActivity;
-import com.example.belipangan.BuyerPendingOrderActivity;
-import com.example.belipangan.BuyerProgressOrderActivity;
-import com.example.belipangan.LoginActivity;
+import com.example.belipangan.activity.BuyerFinishOrderActivity;
+import com.example.belipangan.activity.BuyerPendingOrderActivity;
+import com.example.belipangan.activity.BuyerProgressOrderActivity;
+import com.example.belipangan.activity.LoginActivity;
 import com.example.belipangan.R;
-import com.example.belipangan.SellerFinishOrderActivity;
-import com.example.belipangan.SellerPendingOrderActivity;
-import com.example.belipangan.SellerProgressOrderActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class BuyerOrderFragment extends Fragment implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belipangan.R;
 import com.example.belipangan.model.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class BuyerProgressDetailActivity extends AppCompatActivity {
+public class BuyerFinishDetailActivity extends AppCompatActivity {
     TextView tvNamaProduk, tvNamaCus, tvHarga, tvQty, tvAlamat, tvIdOrder, tvStatus;
     Button btnApprove, btnCancel;
     FirebaseUser fUser;
@@ -27,7 +28,7 @@ public class BuyerProgressDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_progress_detail);
+        setContentView(R.layout.activity_buyer_finish_detail);
 
         intent = getIntent();
         init();
@@ -66,16 +67,25 @@ public class BuyerProgressDetailActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
     }
 
-    public void cancelAction(View view) {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("unapprovalOrders")
+    public void finishOrder(View view) {
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("FinishOrders")
                 .child(order.getUidSeller()).child(order.getIdOrder());
 
-        db.removeValue();
+        order.setStatus("Finish");
 
-        Intent intent = new Intent(this, BuyerPendingOrderActivity.class);
+        db.setValue(order);
+
+        DatabaseReference db2 = FirebaseDatabase.getInstance().getReference("approvalOrders")
+                .child(order.getUidSeller()).child(order.getIdOrder());
+
+        db2.removeValue();
+
+        Intent intent = new Intent (this, BuyerProgressOrderActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+
+
 
     }
 }

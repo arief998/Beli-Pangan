@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PendingOrderDetailActivity">
+    tools:context=".activity.BuyerProgressDetailActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/btnApprove">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -144,28 +143,4 @@
 
         </RelativeLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btnApprove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp"
-        android:text="Terima Pesanan"
-        android:textAllCaps="false"
-        android:onClick="approveAction"/>
-
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/btnApprove"
-        android:layout_marginRight="16dp"
-        android:text="Tolak Pesanan"
-        android:textAllCaps="false"
-        android:backgroundTint="@color/orange"
-        android:onClick="cancelAction"/>
-
 </RelativeLayout>

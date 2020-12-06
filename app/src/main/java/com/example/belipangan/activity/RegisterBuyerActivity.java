@@ -1,4 +1,7 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.belipangan.model.Seller;
+import com.example.belipangan.R;
+import com.example.belipangan.model.Buyer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,30 +21,29 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RegisterSellerActivity extends AppCompatActivity {
-    private EditText etEmail, etPassword, etNama, etNoTelp, etAlamat;
-    private static final String USER_ROLE = "seller";
+public class RegisterBuyerActivity extends AppCompatActivity {
+    private EditText etEmail, etPassword, etNama, etNoTelp;
+    private static final String USER_ROLE = "buyer";
 
-    String email, password, nama, noTelp, userID, alamat;
+    String email, password, nama, noTelp, userID;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference dbReference;
-    Seller penjual;
+    Buyer pengguna;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_seller);
+        setContentView(R.layout.activity_register_buyer);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dbReference = database.getReference("Sellers");
+        dbReference = database.getReference("Buyers");
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etNama= findViewById(R.id.etNama);
         etNoTelp = findViewById(R.id.etNoTelpon);
-        etAlamat = findViewById(R.id.etAlamat);
     }
 
     public void register(View view) {
@@ -51,7 +51,6 @@ public class RegisterSellerActivity extends AppCompatActivity {
         password = etPassword.getText().toString().trim();
         nama = etNama.getText().toString().trim();
         noTelp = etNoTelp.getText().toString().trim();
-        alamat = etAlamat.getText().toString().trim();
 
         if(email.length() == 0){
             etEmail.setError("Email harus di isi!");
@@ -68,9 +67,6 @@ public class RegisterSellerActivity extends AppCompatActivity {
         else if(noTelp.length() == 0){
             etNoTelp.setError("No. Telpon harus di isi!");
         }
-        else if(alamat.length() == 0){
-            etNoTelp.setError("Alamat harus di isi!");
-        }
         else{
             registerUser(email, password);
         }
@@ -85,14 +81,14 @@ public class RegisterSellerActivity extends AppCompatActivity {
                             Log.d("sign-up", "createUserWithEmail:success");
 
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                            penjual = new Seller(nama, email, noTelp, USER_ROLE, alamat);
+                            pengguna = new Buyer(nama, email, noTelp, USER_ROLE);
                             updateUI(firebaseUser);
 
                         }
                         else {
                             // If sign in fails, display a message to the buyer.
                             Log.w("sign-up fail", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterSellerActivity.this, "Authentication failed.",
+                            Toast.makeText(RegisterBuyerActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -102,9 +98,9 @@ public class RegisterSellerActivity extends AppCompatActivity {
     public void updateUI(FirebaseUser firebaseUser){
 //        String keyId = dbReference.push().getKey();
         String keyId = firebaseUser.getUid();
-        dbReference.child(keyId).setValue(penjual);
+        dbReference.child(keyId).setValue(pengguna);
 
-        Intent intent = new Intent(RegisterSellerActivity.this, MainActivitySeller.class);
+        Intent intent = new Intent(RegisterBuyerActivity.this, MainActivityBuyer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 

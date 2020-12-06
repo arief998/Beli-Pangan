@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.belipangan.BuyerPendingDetailActivity;
-import com.example.belipangan.BuyerProgressDetailActivity;
+import com.example.belipangan.activity.BuyerProgressDetailActivity;
 import com.example.belipangan.R;
 import com.example.belipangan.model.Order;
 

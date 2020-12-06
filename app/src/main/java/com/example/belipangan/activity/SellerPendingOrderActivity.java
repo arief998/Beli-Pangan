@@ -1,14 +1,13 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.example.belipangan.R;
 import com.example.belipangan.adapter.PendingOrderAdapter;
 import com.example.belipangan.model.Order;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class SellerPendingOrderActivity extends AppCompatActivity {
     RecyclerView rv;

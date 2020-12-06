@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,8 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.belipangan.AddProductActivity;
-import com.example.belipangan.LoginActivity;
+import com.example.belipangan.activity.AddProductActivity;
+import com.example.belipangan.activity.LoginActivity;
 import com.example.belipangan.R;
 import com.example.belipangan.adapter.ProductAdapter;
 import com.example.belipangan.model.Product;

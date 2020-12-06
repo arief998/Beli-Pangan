@@ -8,12 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.belipangan.ProductDetailActivity;
+import com.example.belipangan.activity.ProductDetailActivity;
 import com.example.belipangan.R;
 import com.example.belipangan.model.Product;
 import com.squareup.picasso.Picasso;

@@ -1,4 +1,4 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.belipangan.adapter.PendingOrderAdapter;
+import com.example.belipangan.R;
 import com.example.belipangan.adapter.ProgressOrderAdapter;
 import com.example.belipangan.model.Order;
 import com.google.firebase.auth.FirebaseAuth;

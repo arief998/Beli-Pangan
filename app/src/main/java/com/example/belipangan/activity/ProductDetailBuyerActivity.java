@@ -1,20 +1,19 @@
-package com.example.belipangan;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+package com.example.belipangan.activity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.belipangan.R;
 import com.example.belipangan.model.Product;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +29,7 @@ import com.squareup.picasso.Picasso;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class ProductDetailActivity extends AppCompatActivity {
+public class ProductDetailBuyerActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser fUser;
@@ -40,42 +39,27 @@ public class ProductDetailActivity extends AppCompatActivity {
     int harga, berat, pemesananMinimum, stok;
     DatabaseReference dbReference, dbReference2;
     StorageReference storageReference;
-    Product product;
-
     ImageView ivProduk;
     TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat, tvToko;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_detail);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_product_detail_buyer);
 
         mAuth = FirebaseAuth.getInstance();
         fUser = mAuth.getCurrentUser();
 
         instansiasiView();
         intent = getIntent();
-        getIntentData(intent);
+        getIntentData();
 
         dbReference = FirebaseDatabase.getInstance().getReference("Product").child(fUser.getUid()).child(key);
         storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imgUri.toString());
 
         getUser();
 
-    }
-
-    private void instansiasiView(){
-        ivProduk = findViewById(R.id.ivDetailProduct);
-        tvdesk = findViewById(R.id.tvDeskripsiProduct);
-        tvHarga = findViewById(R.id.tvHargaProductDetail);
-        tvNama = findViewById(R.id.tvNamaProductDetail);
-        tvKategori = findViewById(R.id.tvKategori);
-        tvMinPesanan = findViewById(R.id.tvPemesananMin);
-        tvBerat = findViewById(R.id.tvBeratProduct);
-        tvToko = findViewById(R.id.namaToko);
     }
 
     private void getUser() {
@@ -96,7 +80,18 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void getIntentData(Intent intent){
+    private void instansiasiView(){
+        ivProduk = findViewById(R.id.ivDetailProduct);
+        tvdesk = findViewById(R.id.tvDeskripsiProduct);
+        tvHarga = findViewById(R.id.tvHargaProductDetail);
+        tvNama = findViewById(R.id.tvNamaProductDetail);
+        tvKategori = findViewById(R.id.tvKategori);
+        tvMinPesanan = findViewById(R.id.tvPemesananMin);
+        tvBerat = findViewById(R.id.tvBeratProduct);
+        tvToko = findViewById(R.id.namaToko);
+    }
+
+    private void getIntentData(){
         product = (Product)intent.getSerializableExtra("EXTRA_PRODUCT");
         nama = product.getNama();
         harga = product.getHarga();
@@ -124,7 +119,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvMinPesanan.setText(String.valueOf(pemesananMinimum));
         tvToko.setText(namaToko);
 
-
         Picasso.get()
                 .load(imgUri)
                 .placeholder(R.drawable.ic_image)
@@ -135,6 +129,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.setGroupVisible(R.id.product_menu_group, false);
+        menu.setGroupVisible(R.id.edit_menu_product, false);
         menu.setGroupVisible(R.id.group_logout, false);
 
         return super.onPrepareOptionsMenu(menu);
@@ -156,43 +151,15 @@ public class ProductDetailActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
-            case R.id.menuEdit:
-                Intent toEdit = new Intent(this, EditProductActivity.class);
-                putIntentData(toEdit);
-                startActivity(toEdit);
-                break;
-            case R.id.menuDelete:
-                dbReference.removeValue();
-                storageReference.delete();
-
-                Intent delete = new Intent(this, MainActivitySeller.class);
-                delete.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK + Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(delete);
-                break;
 
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void putIntentData(Intent intent) {
-        intent.putExtra("EXTRA_PRODUCT", product);
-        intent.putExtra("EXTRA_KEY", key);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Intent intents = getIntent();
-        getIntentData(intents);
-        Product prdct = (Product)intents.getSerializableExtra("EXTRA_PRODUCT");
-        berat = prdct.getBerat();
-        Log.d("resume", "On resume method running");
-        Log.d("berat", String.valueOf(prdct.getBerat()));
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("stop_detail", "method on stop running");
+    public void actionBeli(View view) {
+        Intent beli = new Intent(this, ProductOrderActivity.class);
+        beli.putExtra("EXTRA_PRODUCT", product);
+        beli.putExtra("EXTRA_KEY", key);
+        startActivity(beli);
     }
 }

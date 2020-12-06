@@ -1,4 +1,4 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.belipangan.BuildConfig;
+import com.example.belipangan.R;
 import com.example.belipangan.model.Order;
 import com.example.belipangan.model.Product;
 import com.example.belipangan.model.Buyer;
@@ -235,7 +237,8 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
                 qty,
                 product.getHarga()*qty,
                 UUID,
-                product.getuID()
+                product.getuID(),
+                product.getKey()
         );
 
         db.child(UUID).setValue(order);

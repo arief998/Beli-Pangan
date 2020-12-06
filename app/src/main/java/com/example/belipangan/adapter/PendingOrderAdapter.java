@@ -5,20 +5,17 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.belipangan.PendingOrderDetailActivity;
+import com.example.belipangan.activity.PendingOrderDetailActivity;
 import com.example.belipangan.R;
 import com.example.belipangan.model.Order;
-import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapter.PendingOrder> {
     private LinkedList<Order> list;

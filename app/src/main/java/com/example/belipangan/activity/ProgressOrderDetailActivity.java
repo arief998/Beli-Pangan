@@ -1,4 +1,4 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.belipangan.R;
 import com.example.belipangan.model.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class BuyerPendingDetailActivity extends AppCompatActivity {
+public class ProgressOrderDetailActivity extends AppCompatActivity {
     TextView tvNamaProduk, tvNamaCus, tvHarga, tvQty, tvAlamat, tvIdOrder, tvStatus;
     Button btnApprove, btnCancel;
     FirebaseUser fUser;
@@ -27,13 +28,12 @@ public class BuyerPendingDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_pending_detail);
+        setContentView(R.layout.activity_progress_order_detail);
 
         intent = getIntent();
         init();
         getData(intent);
         setView(order);
-
     }
 
     private void setView(Order order) {
@@ -64,18 +64,5 @@ public class BuyerPendingDetailActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.tvStatusProduk);
         btnApprove = findViewById(R.id.btnApprove);
         btnCancel = findViewById(R.id.btnCancel);
-    }
-
-    public void cancelAction(View view) {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("unapprovalOrders")
-                .child(order.getUidSeller()).child(order.getIdOrder());
-
-        db.removeValue();
-
-        Intent intent = new Intent(this, BuyerPendingOrderActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-
     }
 }

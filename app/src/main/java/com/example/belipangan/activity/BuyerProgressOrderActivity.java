@@ -1,4 +1,4 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.belipangan.adapter.BuyerPendingOrderAdapter;
-import com.example.belipangan.adapter.PendingOrderAdapter;
+import com.example.belipangan.R;
+import com.example.belipangan.adapter.BuyerProgressOrderAdapter;
 import com.example.belipangan.model.Order;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 
-public class BuyerPendingOrderActivity extends AppCompatActivity {
+public class BuyerProgressOrderActivity extends AppCompatActivity {
     RecyclerView rv;
     Order order;
     DatabaseReference db;
@@ -32,7 +32,7 @@ public class BuyerPendingOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_pending_order);
+        setContentView(R.layout.activity_buyer_progress_order);
 
         list = new LinkedList<>();
         filtered = new LinkedList<>();
@@ -40,7 +40,7 @@ public class BuyerPendingOrderActivity extends AppCompatActivity {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         rv = findViewById(R.id.rvPendingOrder);
 
-        db = FirebaseDatabase.getInstance().getReference("unapprovalOrders");
+        db = FirebaseDatabase.getInstance().getReference("approvalOrders");
 
         db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -50,7 +50,6 @@ public class BuyerPendingOrderActivity extends AppCompatActivity {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         listKey.add(snapshot.getKey());
                     }
-                    Log.d("key", listKey.get(0));
 
                     if(listKey.size() > 0){
                         getOrder();
@@ -68,7 +67,7 @@ public class BuyerPendingOrderActivity extends AppCompatActivity {
 
     private void getOrder() {
         for(int i=0; i<listKey.size(); i++){
-            DatabaseReference db2 = FirebaseDatabase.getInstance().getReference("unapprovalOrders")
+            DatabaseReference db2 = FirebaseDatabase.getInstance().getReference("approvalOrders")
                     .child(listKey.get(i));
 
             db2.addValueEventListener(new ValueEventListener() {
@@ -90,9 +89,9 @@ public class BuyerPendingOrderActivity extends AppCompatActivity {
                                 }
                             }
 
-                            BuyerPendingOrderAdapter adapter = new BuyerPendingOrderAdapter(BuyerPendingOrderActivity.this, filtered);
+                            BuyerProgressOrderAdapter adapter = new BuyerProgressOrderAdapter(BuyerProgressOrderActivity.this, filtered);
                             rv.setHasFixedSize(true);
-                            rv.setLayoutManager(new LinearLayoutManager(BuyerPendingOrderActivity.this));
+                            rv.setLayoutManager(new LinearLayoutManager(BuyerProgressOrderActivity.this));
                             rv.setAdapter(adapter);
                         }
 
