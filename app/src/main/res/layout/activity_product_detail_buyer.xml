@@ -126,7 +126,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Alamat :"
+                        android:text="Alamat "
                         android:textSize="12sp" />
 
                     <TextView

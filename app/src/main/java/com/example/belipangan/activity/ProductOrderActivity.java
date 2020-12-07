@@ -65,9 +65,9 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
     int harga, berat, pemesananMinimum, stok, qty=0;
     CustomerDetails cd;
 
-    TextView tvHarga, tvNama, tvBerat, tvNamaCus, tvEmailCus, tvTelpCus;
+    TextView tvHarga, tvNama, tvBerat, tvNamaCus, tvEmailCus, tvTelpCus, tvTotalHarga, tvQty;
     ImageView ivProduk;
-    EditText etQty, etAddressCus;
+    EditText etAddressCus;
 
     RadioGroup radioGroup;
     RadioButton rbCod, rbTransfer;
@@ -113,7 +113,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
         tvNama = findViewById(R.id.tvNamaProductReview);
         tvHarga = findViewById(R.id.tvHargaReview);
-        etQty = (EditText) findViewById(R.id.etQty);
+        tvQty = findViewById(R.id.tvQty);
         tvNamaCus = findViewById(R.id.tvNamaCustomer);
         tvEmailCus = findViewById(R.id.tvEmailCustomer);
         tvTelpCus = findViewById(R.id.tvTelponCustomer);
@@ -123,6 +123,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         radioGroup = (RadioGroup) findViewById(R.id.rgPaymentMethod);
         rbCod = (RadioButton) findViewById(R.id.rbCod);
         rbTransfer = (RadioButton) findViewById(R.id.rbTransfer);
+        tvTotalHarga = findViewById(R.id.tvTotalHarga);
 
         tvNama.setText(nama);
         tvHarga.setText(formatRupiah.format(harga)+"/pcs");
@@ -130,6 +131,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         tvNamaCus.setText(this.buyer.getNama());
         tvEmailCus.setText(this.buyer.getEmail());
         tvTelpCus.setText(this.buyer.getNoTelpon());
+        tvTotalHarga.setText(formatRupiah.format(harga*qty));
 
         Picasso.get()
                 .load(imgUri)
@@ -139,7 +141,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
     }
 
     private boolean validasi(){
-        kuantitas = etQty.getText().toString().trim();
+        kuantitas = tvQty.getText().toString().trim();
         almtCostumer = etAddressCus.getText().toString().trim();
 
         int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -154,7 +156,7 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
 
 
         if(kuantitas.length() == 0){
-            etQty.setError("Kuantitas tidak boleh kosong atau kurang dari " + String.valueOf(pemesananMinimum));
+            tvQty.setError("Kuantitas tidak boleh kosong atau kurang dari " + String.valueOf(pemesananMinimum));
             return false;
         }
         else if(almtCostumer.length() == 0){
@@ -167,10 +169,10 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         }else {
             qty = Integer.parseInt(kuantitas);
             if (qty < pemesananMinimum) {
-                etQty.setError("Kuantitas tidak kurang dari " + String.valueOf(pemesananMinimum));
+                tvQty.setError("Kuantitas tidak kurang dari " + String.valueOf(pemesananMinimum));
                 return false;
             }else if(qty > stok){
-                etQty.setError("Kuantitas tidak boleh lebih dari " + String.valueOf(stok));
+                tvQty.setError("Kuantitas tidak boleh lebih dari " + String.valueOf(stok));
                 return false;
             }else{
                 return true;
@@ -382,8 +384,23 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
     }
 
     public void tambahQty(View view) {
+        qty +=1;
+        tvQty.setText(String.valueOf(qty));
+
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        tvTotalHarga.setText(formatRupiah.format(harga*qty));
+
     }
 
     public void kurangQty(View view) {
+        if(qty > 0){
+            qty -= 1;
+            tvQty.setText(String.valueOf(qty));
+
+            Locale localeID = new Locale("in", "ID");
+            NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+            tvTotalHarga.setText(formatRupiah.format(harga*qty));
+        }
     }
 }
