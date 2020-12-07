@@ -33,7 +33,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
-                        android:text="Order review"
+                        android:text="Detail Transaksi"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -86,16 +86,50 @@
 
                     <EditText
                         android:id="@+id/etQty"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvHargaReview"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="12dp"
-                        android:layout_toRightOf="@id/ivProdukReview"
+                        android:layout_toRightOf="@id/btnKurangProduk"
                         android:fontFamily="@font/montserrat"
                         android:hint="Banyak Pesanan"
                         android:inputType="number" />
+
+                    <Button
+                        android:id="@+id/btnKurangProduk"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvHargaReview"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_toRightOf="@+id/ivProdukReview"
+                        android:background="@android:color/background_light"
+                        android:fontFamily="@font/montserrat"
+                        android:hint="-"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/white"
+                        android:shadowColor="@color/black"
+                        android:onClick="kurangQty"/>
+
+                    <Button
+                        android:id="@+id/btnTambahProduk"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvHargaReview"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_toRightOf="@+id/etQty"
+                        android:background="@android:color/background_light"
+                        android:fontFamily="@font/montserrat"
+                        android:hint="+"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/white"
+                        android:shadowColor="@color/black"
+                        android:onClick="tambahQty"/>
 
 
                 </RelativeLayout>
@@ -120,7 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
-                        android:text="Customer Details"
+                        android:text="Detail Pelanggan"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -175,7 +209,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
-                        android:text="Order delivery address"
+                        android:text="Alamat Pengiriman"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -212,7 +246,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
-                        android:text="Payment Method"
+                        android:text="Metode Pembanyaran"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -255,16 +289,37 @@
 
         <Button
             android:id="@+id/btnPilihPembayaran"
-            android:layout_width="match_parent"
+            android:layout_width="251dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/custom_btn_beli"
+            android:backgroundTint="@color/green"
+            android:onClick="pilihPembayaran"
             android:text="Pilih Pembayaran"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:onClick="pilihPembayaran"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/custom_btn_beli"
-            android:backgroundTint="@color/green"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/labelTotalHarga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Total Harga"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvTotalHarga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Rp 250.000"
+            android:textSize="16sp"
+            android:textColor="@color/green"
             android:textStyle="bold"/>
     </androidx.cardview.widget.CardView>
 

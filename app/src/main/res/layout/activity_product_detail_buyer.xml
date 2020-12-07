@@ -106,6 +106,31 @@
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/labelAlamat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/dijualOleh"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Alamat :"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvAlamat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/namaToko"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toRightOf="@id/labelAlamat"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Sidoarjo, Jawa Timur"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -138,10 +163,23 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/labelBeratProduct"
+                        android:id="@+id/tvDeskripsiProduct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvInformasiProduct"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="deskripsi dari produk yang dijual"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/labelBeratProduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvDeskripsiProduct"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="16dp"
@@ -166,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/labelBeratProduct"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginRight="16dp"
                         android:fontFamily="@font/montserrat"
                         android:text="Pemesanan Min"
@@ -189,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/labelPemesanan"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/montserrat"
@@ -207,6 +245,30 @@
                         android:fontFamily="@font/montserrat"
                         android:text="Sayur" />
 
+                    <TextView
+                        android:id="@+id/labelStok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/labelKategori"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Sisa Stok"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvStok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/labelStok"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="16dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="20" />
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -214,42 +276,18 @@
                 android:id="@+id/cvDeskripsiProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/ivDetailProduct"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_below="@id/cvInformasiProduct"
                 android:layout_marginTop="8dp"
-                android:layout_below="@id/cvInformasiProduct">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivDetailProduct">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/labelDeskripsiProduct"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="16dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="Deskripsi Produk"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tvDeskripsiProduct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textSize="14sp"
-                        android:text="deskripsi dari produk yang dijual"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/labelDeskripsiProduct"
-                        android:layout_marginBottom="8dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -269,13 +307,13 @@
             android:id="@+id/btnBeli"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:background="@drawable/custom_btn_beli"
             android:backgroundTint="@color/green"
             android:fontFamily="@font/montserrat"
             android:onClick="actionBeli"
-            android:text="Beli"
+            android:text="Beli Sekarang"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textStyle="bold"/>

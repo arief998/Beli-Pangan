@@ -381,4 +381,9 @@ public class ProductOrderActivity extends AppCompatActivity implements Transacti
         return request;
     }
 
+    public void tambahQty(View view) {
+    }
+
+    public void kurangQty(View view) {
+    }
 }
