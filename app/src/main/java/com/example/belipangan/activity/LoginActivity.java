@@ -112,6 +112,33 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }catch (Exception e){
+                    adminAuth();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void adminAuth() {
+        dbReference = database.getReference("Admins").child(mUser.getUid());
+
+        dbReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    String role = dataSnapshot.child("role").getValue().toString();
+
+                    if(role.equals("admin")){
+                        Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                }catch (Exception e){
 
                 }
 
@@ -153,8 +180,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     fUser = mAuth.getCurrentUser();
-
-                    checkRole(fUser);
+                    autentikasiListener();
+//                    checkRole(fUser);
 
                 }else{
                     Toast.makeText(LoginActivity.this, "Email atau Password salah", Toast.LENGTH_SHORT).show();

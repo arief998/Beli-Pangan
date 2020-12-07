@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthenticationApp"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.BuyerFinishDetailActivity"/>
-        <activity android:name=".activity.BuyerProgressDetailActivity"/>
-        <activity android:name=".activity.BuyerPendingDetailActivity"/>
+        <activity android:name=".activity.RequestAddDetailActivity"></activity>
+        <activity android:name=".activity.AddProductRequestActivity" />
+        <activity android:name=".activity.AdminMainActivity" />
+        <activity android:name=".activity.BuyerFinishDetailActivity" />
+        <activity android:name=".activity.BuyerProgressDetailActivity" />
+        <activity android:name=".activity.BuyerPendingDetailActivity" />
         <activity android:name=".activity.BuyerFinishOrderActivity" />
         <activity android:name=".activity.BuyerProgressOrderActivity" />
         <activity android:name=".activity.BuyerPendingOrderActivity" />

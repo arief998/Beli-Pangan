@@ -99,8 +99,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         if(isValid){
             simpanIsClick = "diklik";
             uID = user.getUid();
-            dbReference = database.getReference("Product").child(uID);
-
+            dbReference = database.getReference("UnverifiedProducts");
 
             product = new Product(nama, deskripsi, noTelpon, lokasi, uID, kategori, harga, imgUri, stok, berat, minPemesanan);
 
