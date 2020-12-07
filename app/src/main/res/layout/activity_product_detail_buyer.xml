@@ -67,11 +67,22 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/montserrat"
                         android:text="Wortel"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvStokProductDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvNamaProductDetail"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Stok 50"/>
 
                     <View
                         android:id="@+id/garis"
@@ -81,7 +92,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_below="@id/tvNamaProductDetail"/>
+                        android:layout_below="@id/tvStokProductDetail"/>
 
                     <TextView
                         android:id="@+id/dijualOleh"

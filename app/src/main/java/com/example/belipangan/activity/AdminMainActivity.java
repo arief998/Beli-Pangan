@@ -46,6 +46,8 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     public void verifEdit(View view) {
+        Intent intent = new Intent(this, EditProductRequestActivity.class);
+        startActivity(intent);
     }
 
     @Override

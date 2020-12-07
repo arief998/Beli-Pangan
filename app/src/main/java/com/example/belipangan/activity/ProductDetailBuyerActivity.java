@@ -40,7 +40,7 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
     DatabaseReference dbReference, dbReference2;
     StorageReference storageReference;
     ImageView ivProduk;
-    TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat, tvToko;
+    TextView tvdesk, tvHarga, tvNama, tvKategori, tvMinPesanan, tvBerat, tvToko, tvStok;
     Product product;
 
     @Override
@@ -89,6 +89,7 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
         tvMinPesanan = findViewById(R.id.tvPemesananMin);
         tvBerat = findViewById(R.id.tvBeratProduct);
         tvToko = findViewById(R.id.namaToko);
+        tvStok = findViewById(R.id.tvStokProductDetail);
     }
 
     private void getIntentData(){
@@ -118,6 +119,7 @@ public class ProductDetailBuyerActivity extends AppCompatActivity {
         tvBerat.setText(String.valueOf(berat));
         tvMinPesanan.setText(String.valueOf(pemesananMinimum));
         tvToko.setText(namaToko);
+        tvStok.setText("Stok " + String.valueOf(product.getStok()));
 
         Picasso.get()
                 .load(imgUri)

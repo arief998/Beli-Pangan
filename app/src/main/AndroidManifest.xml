@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthenticationApp"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.RequestAddDetailActivity"></activity>
+        <activity android:name=".activity.RequestEditDetailActivity"/>
+        <activity android:name=".activity.EditProductRequestActivity"/>
+        <activity android:name=".activity.RequestAddDetailActivity"/>
         <activity android:name=".activity.AddProductRequestActivity" />
         <activity android:name=".activity.AdminMainActivity" />
         <activity android:name=".activity.BuyerFinishDetailActivity" />

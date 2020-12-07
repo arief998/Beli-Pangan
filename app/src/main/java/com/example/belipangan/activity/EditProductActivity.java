@@ -173,6 +173,7 @@ public class EditProductActivity extends AppCompatActivity implements AdapterVie
     private void addListKategori(List<String> list){
         list.add(0, kategori);
         list.add("Buah");
+        list.add("Sayur");
         list.add("Makanan Pokok");
     }
 
@@ -254,23 +255,37 @@ public class EditProductActivity extends AppCompatActivity implements AdapterVie
     public void simpanEdit(View view) {
         isValid = validasi();
         if(isValid){
-            DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Product").child(uid).child(key);
+//            DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Product").child(uid).child(key);
+            DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("UnverifiedEditProducts");
             boolean gambarBaru = cekGambarBaru();
             simpanEdit = "diklik";
 
             if(gambarBaru){
-                dbReference.child("imgUri").setValue(uriImage);
-                StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl(imgUri.toString());
-                storageRef.delete();
+                product.setImgUri(uriImage);
+//                dbReference.child("imgUri").setValue(uriImage);
+//                StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl(imgUri.toString());
+//                storageRef.delete();
             }
 
-            dbReference.child("berat").setValue(berat);
-            dbReference.child("nama").setValue(nama);
-            dbReference.child("deskripsi").setValue(deskripsi);
-            dbReference.child("kategori").setValue(kategori);
-            dbReference.child("harga").setValue(harga);
-            dbReference.child("berat").setValue(berat);
-            dbReference.child("minPemesanan").setValue(pemesananMinimum);
+            product.setNama(nama);
+            product.setBerat(berat);
+            product.setDeskripsi(deskripsi);
+            product.setKategori(kategori);
+            product.setHarga(harga);
+            product.setMinPemesanan(pemesananMinimum);
+            product.setStok(stok);
+
+            dbReference.child(product.getKey()).setValue(product);
+
+
+
+//            dbReference.child("berat").setValue(berat);
+//            dbReference.child("nama").setValue(nama);
+//            dbReference.child("deskripsi").setValue(deskripsi);
+//            dbReference.child("kategori").setValue(kategori);
+//            dbReference.child("harga").setValue(harga);
+//            dbReference.child("berat").setValue(berat);
+//            dbReference.child("minPemesanan").setValue(pemesananMinimum);
 
             Intent finish = new Intent (this, MainActivitySeller.class);
             finish.putExtra("EXTRA_PRODUCT", product);
