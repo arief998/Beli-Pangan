@@ -1,9 +1,11 @@
-package com.example.belipangan;
+package com.example.belipangan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.belipangan.R;
 
 public class edit_buyer_account extends AppCompatActivity {
 
