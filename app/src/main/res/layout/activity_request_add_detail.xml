@@ -25,13 +25,19 @@
             <ImageView
                 android:id="@+id/ivProduk"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="257dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_image_search"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="12dp"
-                android:src="@drawable/ic_image_search" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvNamaProduct"
@@ -55,7 +61,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi nama produk" />
+                android:hint="Isi nama produk"
+                android:padding="8dp"
+                android:background="@drawable/edit_text_border"/>
 
             <TextView
                 android:id="@+id/tvHargaProduct"
@@ -78,9 +86,12 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:background="@drawable/edit_text_border"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi harga produk"
-                android:inputType="number" />
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/tvDeskripsiProduct"
@@ -91,8 +102,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Deskripsi Produk"
-                android:textColor="@color/black"
+                android:text="Deskripsi Produk" android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -105,7 +115,9 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi deskripsi produk"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvStok"
@@ -130,7 +142,9 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi stok barang"
-                android:inputType="number" />
+                android:inputType="number"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvMinPemesanan"
@@ -155,7 +169,9 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi minimum pemesanan"
-                android:inputType="number" />
+                android:inputType="number"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvBerat"
@@ -168,7 +184,9 @@
                 android:fontFamily="@font/montserrat"
                 android:text="Berat (gram)"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+
+                />
 
             <TextView
                 android:id="@+id/berat"
@@ -180,7 +198,9 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi berat barang"
-                android:inputType="number" />
+                android:inputType="number"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvKategoriProduk"
@@ -205,38 +225,40 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi kategori"
-                android:inputType="number" />
+                android:inputType="number"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <Button
                 android:id="@+id/btnVerif"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/kategori"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:onClick="verifikasi"
                 android:text="Verifikasi"
                 android:textAllCaps="false"
-                android:textStyle="bold"
-                android:layout_below="@id/kategori"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/kategori"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_toStartOf="@id/btnVerif"
                 android:backgroundTint="@color/orange"
                 android:fontFamily="@font/montserrat"
-                android:layout_toStartOf="@id/btnVerif"
                 android:onClick="cancel"
                 android:text="Cancel"
                 android:textAllCaps="false"
-                android:textStyle="bold"
-                android:layout_below="@id/kategori"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

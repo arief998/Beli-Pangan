@@ -215,16 +215,25 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/etAlamatReview"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvOrderAddress"
+                        android:layout_width="match_parent"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/montserrat"
-                        android:hint="Masukkan alamat anda saat ini"
-                        android:inputType="textMultiLine" />
+                        app:boxStrokeColor="@color/green"
+                        android:layout_below="@id/tvOrderAddress">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etAlamatReview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:textSize="16sp"
+                            android:hint="Masukkan Alamat Anda" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -301,7 +310,7 @@
                 android:background="@drawable/custom_btn_beli"
                 android:backgroundTint="@color/green"
                 android:onClick="pilihPembayaran"
-                android:text="Pilih Pembayaran"
+                android:text="Pilih Pembanyaran"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold" />

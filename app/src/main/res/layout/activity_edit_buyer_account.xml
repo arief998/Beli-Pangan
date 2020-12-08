@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.EditBuyerAccount">
+    tools:context=".edit_buyer_account">
     <ScrollView
         android:id="@+id/svEditBuyer"
         android:layout_width="0dp"
@@ -51,7 +51,7 @@
                 android:src="@drawable/ic_account" />
 
             <TextView
-                android:id="@+id/tvFotoBuyer"
+                android:id="@+id/etFotoBuyer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -85,37 +85,41 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi Nama Anda yan Baru" />
+                android:hint="Isi Nama Anda yang Baru"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
-<!--            <TextView-->
-<!--                android:id="@+id/tvEmailBuyer"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/etNamaBuyer"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:fontFamily="@font/montserrat"-->
-<!--                android:text="Email"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold" />-->
+            <TextView
+                android:id="@+id/tvEmailBuyer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etNamaBuyer"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/etEmailBuyer"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/tvEmailBuyer"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:fontFamily="@font/montserrat"-->
-<!--                android:hint="Isi harga produk" />-->
+            <EditText
+                android:id="@+id/etEmailBuyer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvEmailBuyer"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi harga produk"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvTelpBuyer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etNamaBuyer"
+                android:layout_below="@id/etEmailBuyer"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -134,38 +138,43 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi Nomor Telepon Anda yang Baru"
-                android:inputType="number" />
+                android:inputType="number"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
-<!--            <TextView-->
-<!--                android:id="@+id/tvAlamatBuyer"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/etTelpBuyer"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:fontFamily="@font/montserrat"-->
-<!--                android:text="Alamat"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold" />-->
+            <TextView
+                android:id="@+id/tvAlamatBuyer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etTelpBuyer"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Alamat"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+              />
 
-<!--            <EditText-->
-<!--                android:id="@+id/etAlamatBuyer"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/tvAlamatBuyer"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:fontFamily="@font/montserrat"-->
-<!--                android:hint="Isi Alamat Anda yang Baru"-->
-<!--                android:inputType="textMultiLine" />-->
+            <EditText
+                android:id="@+id/etAlamatBuyer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAlamatBuyer"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Isi Alamat Anda yang Baru"
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <Button
                 android:id="@+id/btnSimpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etTelpBuyer"
+                android:layout_below="@+id/etAlamatBuyer"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
