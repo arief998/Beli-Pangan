@@ -32,6 +32,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/etProfilBuyer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/montserrat"
+                android:text="Edit Profil"
+                android:layout_marginEnd="28dp"
+                android:textColor="@color/navy_blue.secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
+
             <ImageView
                 android:id="@+id/buyer_image"
                 android:layout_width="205dp"
