@@ -76,27 +76,31 @@
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etNamaBuyer"
-                style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/iLNamaBuyer"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvNamaBuyer"
+                android:layout_width="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi nama anda yang baru"
-                android:textColor="#000000"
-                android:background="@drawable/edit_text_border"
-                android:padding="8dp"
-                />
+                app:boxStrokeColor="@color/green"
+                android:layout_below="@id/tvNamaBuyer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNamaBuyer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Isi Nama Anda yang Baru" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvEmailBuyer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etNamaBuyer"
+                android:layout_below="@id/iLNamaBuyer"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -105,52 +109,66 @@
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etEmailBuyer"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/iLEmailBuyer"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvEmailBuyer"
+                android:layout_width="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi harga produk"
-                android:background="@drawable/edit_text_border"
-                android:padding="8dp"/>
+                app:boxStrokeColor="@color/green"
+                android:layout_below="@id/tvEmailBuyer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmailBuyer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Isi Email Anda yang Baru" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:id="@+id/tvTelpBuyer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etEmailBuyer"
+                android:layout_below="@id/iLEmailBuyer"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Nomor Telepon"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etTelpBuyer"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/iLTelpBuyer"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvTelpBuyer"
+                android:layout_width="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi Nomor Telepon Anda yang Baru"
-                android:inputType="number"
-                android:background="@drawable/edit_text_border"
-                android:padding="8dp"/>
+                app:boxStrokeColor="@color/green"
+                android:layout_below="@id/tvTelpBuyer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTelpBuyer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Isi Nomor Anda yang Baru"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvAlamatBuyer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etTelpBuyer"
+                android:layout_below="@id/iLTelpBuyer"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -159,35 +177,39 @@
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etAlamatBuyer"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/iLAlamatBuyer"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvAlamatBuyer"
+                android:layout_width="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi Alamat Anda yang Baru"
-                android:inputType="textMultiLine"
-                android:background="@drawable/edit_text_border"
-                android:padding="8dp"/>
+                app:boxStrokeColor="@color/green"
+                android:layout_below="@id/tvAlamatBuyer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAlamatBuyer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Isi Alamat Anda yang Baru"
+                    android:inputType="textMultiLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnSimpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etAlamatBuyer"
+                android:layout_below="@+id/iLAlamatBuyer"
                 android:layout_alignParentEnd="true"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:onClick="simpanEditBuyer"
                 android:text="Edit"
-                android:textStyle="bold"
-                android:background="@drawable/edit_text_border"
-                android:padding="8dp"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
