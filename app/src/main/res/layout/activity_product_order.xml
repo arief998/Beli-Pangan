@@ -215,25 +215,20 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_height="wrap_content"
+                    <EditText
+                        android:id="@+id/etAlamatReview"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvOrderAddress"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="12dp"
+                        android:textSize="16sp"
                         android:fontFamily="@font/montserrat"
-                        app:boxStrokeColor="@color/green"
-                        android:layout_below="@id/tvOrderAddress">
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Masukkan alamat anda saat ini"
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"/>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etAlamatReview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
-                            android:textSize="16sp"
-                            android:hint="Masukkan Alamat Anda" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 

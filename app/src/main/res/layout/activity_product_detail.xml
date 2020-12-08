@@ -151,12 +151,25 @@
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvDeskripsiProduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvInformasiProduct"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="deskripsi dari produk yang dijual"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/labelBeratProduct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvInformasiProduct"
+                        android:layout_below="@id/tvDeskripsiProduct"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="16dp"
@@ -225,48 +238,6 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvDeskripsiProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/ivDetailProduct"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="8dp"
-                android:layout_below="@id/cvInformasiProduct">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/labelDeskripsiProduct"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textSize="18sp"
-                        android:text="Deskripsi Produk"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/tvDeskripsiProduct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/labelDeskripsiProduct"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="8dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="deskripsi dari produk yang dijual"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 
