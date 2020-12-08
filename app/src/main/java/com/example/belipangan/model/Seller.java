@@ -1,7 +1,9 @@
 package com.example.belipangan.model;
 
-public class Seller {
-    private String nama, email, noTelpon, role, alamat;
+import java.io.Serializable;
+
+public class Seller implements Serializable {
+    private String nama, email, noTelpon, role, alamat, imgUri;
 
     public Seller(String nama, String email, String noTelpon, String role, String alamat) {
         this.nama = nama;
@@ -12,6 +14,14 @@ public class Seller {
     }
 
     public Seller() {
+    }
+
+    public String getImgUri() {
+        return imgUri;
+    }
+
+    public void setImgUri(String imgUri) {
+        this.imgUri = imgUri;
     }
 
     public String getNama() {

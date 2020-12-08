@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.edit_seller_account">
+    tools:context=".activity.EditSellerAccount">
 
     <ScrollView
         android:id="@+id/svEditBuyer"
@@ -52,7 +52,7 @@
                 android:src="@drawable/ic_account" />
 
             <TextView
-                android:id="@+id/etFotoSeller"
+                android:id="@+id/tvFotoSeller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -60,7 +60,6 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:layout_toLeftOf="@+id/tvEditProfilSeller"
-                android:onClick="editFotoSeller"
                 android:text="Edit Foto"
                 android:textColor="@color/green" />
 
@@ -88,35 +87,35 @@
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi Nama Anda yan Baru" />
 
-            <TextView
-                android:id="@+id/tvEmailSeller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/etNamaSeller"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Email"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvEmailSeller"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/etNamaSeller"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:fontFamily="@font/montserrat"-->
+<!--                android:text="Email"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/etEmailSeller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvEmailSeller"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="@font/montserrat"
-                android:hint="Isi harga produk" />
+<!--            <EditText-->
+<!--                android:id="@+id/etEmailSeller"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/tvEmailSeller"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:fontFamily="@font/montserrat"-->
+<!--                android:hint="Isi harga produk" />-->
 
             <TextView
                 android:id="@+id/tvTelpSeller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etEmailSeller"
+                android:layout_below="@id/etNamaSeller"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"

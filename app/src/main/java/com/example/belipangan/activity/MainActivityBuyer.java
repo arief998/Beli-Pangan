@@ -6,7 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +18,9 @@ import com.example.belipangan.R;
 import com.example.belipangan.fragment.BuyerAccountFragment;
 import com.example.belipangan.fragment.BuyerHomeFragment;
 import com.example.belipangan.fragment.BuyerOrderFragment;
+import com.example.belipangan.fragment.HomeFragment;
+import com.example.belipangan.fragment.PenjualanFragment;
+import com.example.belipangan.fragment.ProductFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,7 +29,9 @@ public class MainActivityBuyer extends AppCompatActivity {
     private BottomNavigationView botNavigation;
     private Fragment selectedFragment;
 
-
+    private SharedPreferences mPreferences;
+    private String sharedPreFile = "com.example.android.hellosharedprefs";
+    private String fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +45,46 @@ public class MainActivityBuyer extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        selectedFragment = new BuyerHomeFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
+        fragment = "fragment";
+
+        mPreferences = getSharedPreferences(sharedPreFile, MODE_PRIVATE);
+        fragment = mPreferences.getString("fragment", fragment);
+
+        Log.d("fragment", fragment);
+        if(fragment.equalsIgnoreCase("home")){
+            selectedFragment = new BuyerHomeFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
+
+            BottomNavigationView item = findViewById(R.id.botNavMenuBuyer);
+            Menu menu = item.getMenu();
+            MenuItem item1 = menu.getItem(0);
+            item1.setChecked(true);
+
+        }else if(fragment.equalsIgnoreCase("akun") ){
+            selectedFragment = new BuyerAccountFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
+
+            BottomNavigationView item = findViewById(R.id.botNavMenuBuyer);
+            Menu menu = item.getMenu();
+            MenuItem item1 = menu.getItem(2);
+            item1.setChecked(true);
+
+        }else if(fragment.equalsIgnoreCase("order")){
+            selectedFragment = new BuyerOrderFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
+
+            BottomNavigationView item = findViewById(R.id.botNavMenuBuyer);
+            Menu menu = item.getMenu();
+            MenuItem item1 = menu.getItem(1);
+            item1.setChecked(true);
+
+        }else{
+            selectedFragment = new BuyerHomeFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
+        }
+
+//        selectedFragment = new BuyerHomeFragment();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerBuyer, selectedFragment).commit();
 
     }
 
@@ -49,12 +94,15 @@ public class MainActivityBuyer extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.menuHomeBuyer:
                     selectedFragment = new BuyerHomeFragment();
+                    fragment = "home";
                     break;
                 case R.id.menuAkunBuyer:
                     selectedFragment = new BuyerAccountFragment();
+                    fragment = "akun";
                     break;
                 case R.id.menuOrderBuyer:
                     selectedFragment = new BuyerOrderFragment();
+                    fragment = "order";
                     break;
             }
 
@@ -93,5 +141,13 @@ public class MainActivityBuyer extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+        preferencesEditor.putString("fragment", fragment);
+        preferencesEditor.apply();
     }
 }

@@ -6,12 +6,14 @@
         android:icon="@drawable/ic_product"/>
 
     <item
-        android:id="@+id/menuHome"
-        android:title="Home"
-        android:icon="@drawable/ic_home"/>
-
-    <item
         android:id="@+id/menuSelling"
         android:title="Penjualan"
         android:icon="@drawable/ic_selling"/>
+
+    <item
+        android:id="@+id/menuAkun"
+        android:title="Akun"
+        android:icon="@drawable/ic_account"/>
+
+
 </menu>
