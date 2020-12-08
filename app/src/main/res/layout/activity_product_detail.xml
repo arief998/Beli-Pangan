@@ -29,12 +29,12 @@
             <ImageView
                 android:id="@+id/ivDetailProduct"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="330dp"
+                android:layout_marginBottom="12dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="12dp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvHargaProduct"

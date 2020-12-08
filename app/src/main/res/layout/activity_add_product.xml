@@ -24,17 +24,26 @@
 
             <ImageView
                 android:id="@+id/ivProduk"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_image_search"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="257dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_image_search" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/ivProduk"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="254dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:onClick="chooseImage"
@@ -47,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivProduk"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="37dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/nama_produk"
