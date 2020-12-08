@@ -65,6 +65,7 @@
 
             <EditText
                 android:id="@+id/etNamaProduct"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvNamaProduct"

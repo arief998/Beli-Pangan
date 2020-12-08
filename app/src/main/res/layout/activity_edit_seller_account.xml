@@ -86,7 +86,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi Nama Anda yan Baru" />
+                android:hint="Isi Nama Anda yan Baru"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvEmailSeller"
@@ -110,7 +112,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi harga produk" />
+                android:hint="Isi harga produk"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvTelpSeller"
@@ -135,7 +139,9 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi Nomor Telepon Anda yang Baru"
-                android:inputType="number" />
+                android:inputType="number"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvAlamatSeller"
@@ -160,7 +166,9 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="Isi Alamat Anda yang Baru"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_border"
+                android:padding="8dp"/>
 
             <Button
                 android:id="@+id/btnSimpan"
