@@ -8,8 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/btnApprove">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -174,32 +173,29 @@
 
             </androidx.cardview.widget.CardView>
 
+            <Button
+                android:id="@+id/btnApprove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_below="@+id/cvCustomerDetail"
+                android:text="Terima Pesanan"
+                android:textAllCaps="false"
+                android:onClick="approveAction"/>
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnApprove"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Tolak Pesanan"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/red"
+                android:onClick="cancelAction"/>
+
         </RelativeLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btnApprove"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:onClick="approveAction"
-        android:text="Terima Pesanan"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="16dp"
-        android:layout_toLeftOf="@id/btnApprove"
-        android:backgroundTint="@color/red"
-        android:onClick="cancelAction"
-        android:text="Tolak Pesanan"
-        android:textAllCaps="false" />
 
 </RelativeLayout>
