@@ -46,6 +46,8 @@ public class ProgressOrderDetailActivity extends AppCompatActivity {
         tvQty.setText(String.valueOf(order.getKuantitas()));
         tvHarga.setText(formatRupiah.format(order.getTotalHarga()));
         tvIdOrder.setText(order.getIdOrder());
+        tvNamaCus.setText(order.getNamaPembeli());
+
     }
 
     private void getData(Intent intent) {
