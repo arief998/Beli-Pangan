@@ -41,13 +41,13 @@
             <ImageView
                 android:id="@+id/ivEditBuyer"
                 android:layout_width="205dp"
-                android:layout_height="171dp"
+                android:layout_height="170dp"
                 android:layout_below="@+id/tvEditProfilBuyer"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="80dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="80dp"
                 android:src="@drawable/ic_account" />
 
             <TextView
@@ -178,7 +178,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:onClick="simpanEditBuyer"
                 android:text="Edit"

@@ -65,7 +65,6 @@
 
             <EditText
                 android:id="@+id/etNamaProduct"
-                style="@style/"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvNamaProduct"
@@ -73,6 +72,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
+                android:background="@drawable/edit_text_border"
+                android:padding="10dp"
                 android:hint="Isi nama produk" />
 
             <TextView
@@ -97,6 +98,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
+                android:background="@drawable/edit_text_border"
+                android:padding="10dp"
                 android:hint="Isi harga produk"
                 android:inputType="number" />
 
@@ -122,6 +125,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
+                android:background="@drawable/edit_text_border"
+                android:padding="10dp"
                 android:hint="Isi deskripsi produk"
                 android:inputType="textMultiLine" />
 
@@ -147,6 +152,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
+                android:background="@drawable/edit_text_border"
+                android:padding="10dp"
                 android:hint="Isi stok barang"
                 android:inputType="number" />
 
@@ -172,6 +179,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
+                android:background="@drawable/edit_text_border"
+                android:padding="10dp"
                 android:hint="Isi minimum pemesanan"
                 android:inputType="number" />
 
@@ -197,6 +206,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
+                android:background="@drawable/edit_text_border"
+                android:padding="10dp"
                 android:hint="Isi berat barang"
                 android:inputType="number" />
 
@@ -229,8 +240,8 @@
                 android:layout_below="@+id/spinnerKategori"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
                 android:onClick="simpanEdit"
                 android:text="Edit"

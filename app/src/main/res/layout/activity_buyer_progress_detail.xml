@@ -59,34 +59,67 @@
                         android:layout_marginLeft="8dp"/>
 
                     <TextView
-                        android:id="@+id/tvHargaProduk"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tvTotalHargaProduk"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rp50.000,00"
-                        android:textColor="@color/green"
+                        android:text="Total Harga"
+                        android:textColor="@color/black"
                         android:layout_below="@id/tvNamaProduk"
                         android:layout_marginTop="8dp"
                         android:layout_marginLeft="8dp"/>
 
                     <TextView
+                        android:id="@+id/tvHargaProduk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp50.000,00"
+                        android:textColor="@color/green"
+                        android:layout_below="@id/tvNamaProduk"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvJumlahProduk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jumlah Barang"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/tvTotalHargaProduk"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="8dp"/>
+
+                    <TextView
                         android:id="@+id/tvKuantitasProduk"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5 pcs"
                         android:textColor="@color/black"
                         android:layout_below="@id/tvHargaProduk"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/tvKuantitasProduk"
                         android:layout_marginTop="8dp"
                         android:layout_marginLeft="8dp"/>
 
                     <TextView
                         android:id="@+id/tvStatusProduk"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pending"
                         android:textColor="@color/orange"
                         android:layout_below="@id/tvKuantitasProduk"
+                        android:layout_alignParentRight="true"
                         android:layout_marginTop="8dp"
-                        android:layout_marginLeft="8dp"/>
+                        android:layout_marginRight="8dp"/>
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
