@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.belipangan.R;
 import com.example.belipangan.model.Seller;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -87,7 +89,20 @@ public class RegisterSellerActivity extends AppCompatActivity {
 
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             penjual = new Seller(nama, email, noTelp, USER_ROLE, alamat);
-                            updateUI(firebaseUser);
+
+
+                            firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    updateUI(firebaseUser);
+                                    Toast.makeText(RegisterSellerActivity.this, "link verifikasi telah dikirim ke email anda", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(RegisterSellerActivity.this, "Email yang anda daftarkan tidak ditemukan!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                         }
                         else {
@@ -105,7 +120,7 @@ public class RegisterSellerActivity extends AppCompatActivity {
         String keyId = firebaseUser.getUid();
         dbReference.child(keyId).setValue(penjual);
 
-        Intent intent = new Intent(RegisterSellerActivity.this, MainActivitySeller.class);
+        Intent intent = new Intent(RegisterSellerActivity.this, VerifyActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 

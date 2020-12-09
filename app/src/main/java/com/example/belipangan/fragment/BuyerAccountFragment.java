@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.belipangan.R;
+import com.example.belipangan.activity.ChangePasswordActivity;
 import com.example.belipangan.activity.EditBuyerAccount;
 import com.example.belipangan.model.Buyer;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +32,7 @@ import com.squareup.picasso.Picasso;
 import java.util.LinkedList;
 
 public class BuyerAccountFragment extends Fragment implements View.OnClickListener {
-    TextView tvEmail, tvTelpon, tvAlamat, tvNama, editProfile;
+    TextView tvEmail, tvTelpon, tvAlamat, tvNama, editProfile, tvUbahPass;
     ImageView ivProfile;
     View view;
     FirebaseDatabase db;
@@ -49,6 +51,7 @@ public class BuyerAccountFragment extends Fragment implements View.OnClickListen
         init();
         getUser();
         editProfile.setOnClickListener(this);
+        tvUbahPass.setOnClickListener(this);
         return view;
     }
 
@@ -114,6 +117,7 @@ public class BuyerAccountFragment extends Fragment implements View.OnClickListen
         tvNama = view.findViewById(R.id.buyer_name);
         ivProfile = view.findViewById(R.id.buyer_image);
         editProfile = view.findViewById(R.id.editProfilBuyer);
+        tvUbahPass = view.findViewById(R.id.tvUbahPass);
 
     }
 
@@ -125,6 +129,13 @@ public class BuyerAccountFragment extends Fragment implements View.OnClickListen
                 Intent intent = new Intent(view.getContext(), EditBuyerAccount.class);
                 intent.putExtra("EXTRA_BUYER", buyer);
                 view.getContext().startActivity(intent);
+                break;
+            case R.id.tvUbahPass:
+//                Intent intents = new Intent(view.getContext(), ChangePasswordActivity.class);
+//                view.getContext().startActivity(intents);
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.sendPasswordResetEmail(fUser.getEmail());
+                Toast.makeText(view.getContext(), "Link ganti password sudah dikirim, cek email anda", Toast.LENGTH_SHORT).show();
                 break;
         }
 

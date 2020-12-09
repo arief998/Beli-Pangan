@@ -13,8 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthenticationApp"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.FinishOrderDetailActivity"/>
-        <activity android:name=".activity.EditSellerAccount"/>
+        <activity android:name=".activity.ChangePasswordActivity"></activity>
+        <activity android:name=".activity.VerifyActivity" />
+        <activity android:name=".activity.FinishOrderDetailActivity" />
+        <activity android:name=".activity.EditSellerAccount" />
         <activity android:name=".activity.EditBuyerAccount" />
         <activity android:name=".activity.RequestEditDetailActivity" />
         <activity android:name=".activity.EditProductRequestActivity" />

@@ -85,41 +85,40 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi Nama Anda yan Baru"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>
 
-            <TextView
-                android:id="@+id/tvEmailSeller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/etNamaSeller"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Email"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvEmailSeller"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/etNamaSeller"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:fontFamily="@font/montserrat"-->
+<!--                android:text="Email"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textStyle="bold" />-->
 
-            <EditText
-                android:id="@+id/etEmailSeller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvEmailSeller"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="@font/montserrat"
-                android:hint="Isi harga produk"
-                android:background="@drawable/edit_text_border"
-                android:padding="8dp"/>
+<!--            <EditText-->
+<!--                android:id="@+id/etEmailSeller"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/tvEmailSeller"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:fontFamily="@font/montserrat"-->
+<!--                android:hint="Isi harga produk"-->
+<!--                android:background="@drawable/edit_text_border"-->
+<!--                android:padding="8dp"/>-->
 
             <TextView
                 android:id="@+id/tvTelpSeller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etEmailSeller"
+                android:layout_below="@id/etNamaSeller"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -137,7 +136,6 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi Nomor Telepon Anda yang Baru"
                 android:inputType="number"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>
@@ -164,7 +162,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi Alamat Anda yang Baru"
                 android:inputType="textMultiLine"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>

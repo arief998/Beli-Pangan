@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText etEmail, etPassword;
-    TextView tvRegister;
+    TextView tvRegister, tvForgot;
     FirebaseDatabase database;
     FirebaseUser fUser, mUser;
     DatabaseReference dbReference;
@@ -48,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmailLogin);
         etPassword = findViewById(R.id.etPasswordLogin);
         tvRegister = findViewById(R.id.tvRegister);
+        tvForgot = findViewById(R.id.tvForget);
+
+
 
     }
 
@@ -66,18 +69,17 @@ public class LoginActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             try {
                                 String role = dataSnapshot.child("role").getValue().toString();
-                                Log.d("Role auth state listen", role);
 
-                                if(role.equals("buyer")){
-                                    Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
+                                if(!fUser.isEmailVerified()){
+                                    Intent intent = new Intent(LoginActivity.this, VerifyActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
-                                }
-
-                                if(role.equals("seller")){
-                                    Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+                                }else{
+                                    if(role.equals("buyer")){
+                                        Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    }
                                 }
                             }catch (Exception e){
                                 sellerAuth();
@@ -106,10 +108,16 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String role = dataSnapshot.child("role").getValue().toString();
 
-                    if(role.equals("seller")){
-                        Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
+                    if(!fUser.isEmailVerified()){
+                        Intent intent = new Intent(LoginActivity.this, VerifyActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
+                    }else{
+                        if(role.equals("seller")){
+                            Intent intent = new Intent(LoginActivity.this, MainActivitySeller.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
                     }
                 }catch (Exception e){
                     adminAuth();
@@ -180,7 +188,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     fUser = mAuth.getCurrentUser();
-                    autentikasiListener();
+                    if(!fUser.isEmailVerified()){
+                        if(fUser.getEmail().equals("admin@gmail.com")){
+                            adminAuth();
+                        }else{
+                            Intent intent = new Intent(LoginActivity.this, VerifyActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                    }else{
+                        autentikasiListener();
+
+                    }
 //                    checkRole(fUser);
 
                 }else{
@@ -227,4 +246,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public void forgotPassword(View view) {
+        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        startActivity(intent);
+    }
 }

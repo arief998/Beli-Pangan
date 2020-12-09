@@ -64,6 +64,8 @@ public class EditSellerAccount extends AppCompatActivity implements View.OnClick
         fotoSeller.setOnClickListener(this);
 
         if(seller.getImgUri() != null){
+            Log.d("VALID", seller.getImgUri());
+
             Uri u = Uri.parse(seller.getImgUri());
             Glide.with(EditSellerAccount.this)
                     .load(u)
@@ -76,6 +78,7 @@ public class EditSellerAccount extends AppCompatActivity implements View.OnClick
         boolean isValid = validasi();
 
         if (isValid) {
+            Log.d("VALID", etNama.getText().toString().trim());
             FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
             DatabaseReference db = FirebaseDatabase.getInstance().getReference("Sellers").child(fUser.getUid());
 
@@ -101,7 +104,7 @@ public class EditSellerAccount extends AppCompatActivity implements View.OnClick
     }
 
     private void getData(Intent intent) {
-        seller = (Seller) intent.getSerializableExtra("EXTRA_BUYER");
+        seller = (Seller) intent.getSerializableExtra("EXTRA_SELLER");
 
         etNama.setText(seller.getNama());
         etTelpon.setText(seller.getNoTelpon());

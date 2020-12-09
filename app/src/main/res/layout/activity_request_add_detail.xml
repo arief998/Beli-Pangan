@@ -61,7 +61,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi nama produk"
                 android:padding="8dp"
                 android:background="@drawable/edit_text_border"/>
 
@@ -79,7 +78,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/hargaProduct"
+                android:id="@+id/hargaProducts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvHargaProduct"
@@ -88,16 +87,13 @@
                 android:layout_marginRight="16dp"
                 android:background="@drawable/edit_text_border"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi harga produk"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textColor="#FFFFFF" />
+                android:padding="8dp"/>
 
             <TextView
                 android:id="@+id/tvDeskripsiProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/hargaProduct"
+                android:layout_below="@id/hargaProducts"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -114,8 +110,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi deskripsi produk"
-                android:inputType="textMultiLine"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>
 
@@ -141,8 +135,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi stok barang"
-                android:inputType="number"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>
 
@@ -168,8 +160,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi minimum pemesanan"
-                android:inputType="number"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>
 
@@ -197,8 +187,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi berat barang"
-                android:inputType="number"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>
 
@@ -224,8 +212,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi kategori"
-                android:inputType="number"
                 android:background="@drawable/edit_text_border"
                 android:padding="8dp"/>
 

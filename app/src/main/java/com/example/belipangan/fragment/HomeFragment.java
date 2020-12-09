@@ -36,7 +36,7 @@ import java.util.LinkedList;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     FirebaseAuth mAuth;
-    TextView tvEmail, tvTelpon, tvAlamat, tvNama, editProfile;
+    TextView tvEmail, tvTelpon, tvAlamat, tvNama, editProfile, tvUbahPass;
     ImageView ivProfile;
     View view;
     FirebaseDatabase db;
@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         init();
         getUser();
         editProfile.setOnClickListener(this);
+        tvUbahPass.setOnClickListener(this);
         return view;
     }
 
@@ -158,6 +159,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tvNama = view.findViewById(R.id.seller_name);
         ivProfile = view.findViewById(R.id.seller_image);
         editProfile = view.findViewById(R.id.etProfilSeller);
+        tvUbahPass = view.findViewById(R.id.tvUbahPass);
 
     }
 
@@ -167,8 +169,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.etProfilSeller:
 
                 Intent intent = new Intent(view.getContext(), EditSellerAccount.class);
-                intent.putExtra("EXTRA_BUYER", seller);
+                intent.putExtra("EXTRA_SELLER", seller);
                 view.getContext().startActivity(intent);
+                break;
+
+            case R.id.tvUbahPass:
+//                Intent intents = new Intent(view.getContext(), ChangePasswordActivity.class);
+//                view.getContext().startActivity(intents);
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.sendPasswordResetEmail(fUser.getEmail());
+                Toast.makeText(view.getContext(), "Link ganti password sudah dikirim, cek email anda", Toast.LENGTH_SHORT).show();
                 break;
         }
 

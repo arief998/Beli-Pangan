@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.belipangan.R;
 import com.example.belipangan.model.Buyer;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,7 +83,14 @@ public class RegisterBuyerActivity extends AppCompatActivity {
 
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             pengguna = new Buyer(nama, email, noTelp, USER_ROLE);
-                            updateUI(firebaseUser);
+
+                            firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    updateUI(firebaseUser);
+                                    Toast.makeText(RegisterBuyerActivity.this, "link verifikasi telah dikirim ke email anda", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                         }
                         else {
@@ -100,7 +108,7 @@ public class RegisterBuyerActivity extends AppCompatActivity {
         String keyId = firebaseUser.getUid();
         dbReference.child(keyId).setValue(pengguna);
 
-        Intent intent = new Intent(RegisterBuyerActivity.this, MainActivityBuyer.class);
+        Intent intent = new Intent(RegisterBuyerActivity.this, VerifyActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 

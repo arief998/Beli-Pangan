@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class RequestAddDetailActivity extends AppCompatActivity {
     private void init() {
         tvNama = findViewById(R.id.namaProduct);
         tvBerat = findViewById(R.id.berat);
-        tvHarga = findViewById(R.id.hargaProduct);
+        tvHarga = findViewById(R.id.hargaProducts);
         tvMin = findViewById(R.id.minPemesanan);
         tvStok = findViewById(R.id.stok);
         tvDes = findViewById(R.id.deskripsiProduct);
