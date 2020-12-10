@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="28dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Edit Profil"
                 android:textColor="@color/navy_blue.secondary"

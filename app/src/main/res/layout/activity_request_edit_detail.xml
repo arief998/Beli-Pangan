@@ -209,36 +209,43 @@
                 android:hint="Isi kategori"
                 android:inputType="number" />
 
+            <Button
+                android:id="@+id/btnVerif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/kategori"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/montserrat"
+                android:onClick="verifikasi"
+                android:text="Verifikasi"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/montserrat"
+                android:layout_toLeftOf="@+id/btnVerif"
+                android:layout_below="@+id/kategori"
+                android:onClick="cancel"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnVerif" />
+
         </RelativeLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnVerif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp"
-        android:fontFamily="@font/montserrat"
-        android:onClick="verifikasi"
-        android:text="Verifikasi"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:backgroundTint="@color/orange"
-        android:fontFamily="@font/montserrat"
-        android:onClick="cancel"
-        android:text="Cancel"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnVerif" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
